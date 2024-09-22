@@ -1,0 +1,568 @@
+<html>
+<H1> TIDES </H1>
+This webpage is drawing a graph using Canvas (Javascript).
+This is an example page to show all of the possible Chart Types and the various options on charts.<BR>
+<A HREF="https://bhangraboy1.github.io/tides/index.html">Home</A>
+<A HREF="https://bhangraboy1.github.io/tides/examples.html">Examples</A>
+<A HREF="https://bhangraboy1.github.io/tides/macro.html">Macro</A>
+
+<HR color="rgb(255, 103, 31)">
+<head>
+  <style>
+    .chart-container {
+	width: 400px;
+	margin: 0 auto;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <label for="data-selector">Select Data Column:</label>
+    <select id="data-selector">
+      <option value="code1">Code 1</option>
+      <option value="code2">Code 2</option>
+    </select>
+    <div class="chart-container">
+      <canvas id="chartCanvas1" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas2" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas3" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas4" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas5" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas6" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas7" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas8" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas9" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas10" width="100" height="60"></canvas>
+    </div>
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+                    const values2 = parsedData.data.map(row => row['code2']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas1').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(255, 103, 31, 1)',
+				color: 'rgba(255, 103, 31, 1)',
+				backgroundColor: 'rgba(255, 103, 31, 1)',
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Life Expectancy',
+                                data: values2,
+                                borderColor: 'rgba(255, 103, 31, 1)',
+				color: 'rgba(255, 103, 31, 1)',
+				backgroundColor: 'rgba(255, 103, 31, 1)',
+                                borderWidth: 2
+                            }
+			]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Line Graph',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Date'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'Value'
+						}
+					}
+				}
+			}
+
+                    });
+                }
+            });
+        });
+    </script>
+<! THIS IS THE SCRIPT FOR A BAR GRAPH>
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas2').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Bar Graph',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Date'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'Value'
+						}
+					}
+				}
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas3').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Radar Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas4').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Pie Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+ 
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas5').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Doughnut Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+ 
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas6').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'polarArea',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Polar Area Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+		    const bubbleData = parsedData.data.map(row => ({x: row['code1'], y: row['code2'], r: row['code2'] }))
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas7').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bubble',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: bubbleData,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Bubble Graph',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+		    const scatterData = parsedData.data.map(row => ({x: row['code1'], y: row['code2'] }))
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas8').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'scatter',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: scatterData,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Scatter Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas9').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values, values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2,
+				fill: true
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Area Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Date'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'Value'
+						}
+					}
+				}
+			}
+
+                    });
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
