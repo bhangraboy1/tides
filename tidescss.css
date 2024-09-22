@@ -1,0 +1,43 @@
+<style>
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+  padding: 0px;
+  text-align: center;
+  background: #FF671F;
+  color: white;
+  font-size: 15px;
+}
+P { font-family: "Helvetica Neue";
+    color: #00004d; 
+    font-size: 18px
+}
+
+
+a { 
+  color: white; 
+  text-decoration: none;
+}
+a:hover {
+  color: green;
+}
+
+
+/* Page Content */
+.content {padding:20px;}
+
+    .chart-container {
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+    }
+    .chart-box {
+      width: 45%;
+    }
+
+</style>
