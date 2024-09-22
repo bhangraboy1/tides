@@ -1,0 +1,290 @@
+<html>
+<head>
+  <link rel ='stylesheet' type='text/css' href='https://bhangraboy1.github.io/tides/tidescss.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+
+<body>
+
+
+<div class="header">
+  <h2>TIDES</h2>
+    The Indian Dataset for Economic and Social Sciences
+    <BR><A style="font-weight:bold" HREF="https://bhangraboy1.github.io/tides/index.html">Home</A>
+    <A style="font-weight:bold" HREF="https://bhangraboy1.github.io/tides/examples.html">Examples</A>
+    <A style="font-weight:bold" HREF="https://bhangraboy1.github.io/tides/macro.html">Macro</A>
+</div>
+
+<H2>Macroeconomic Trends</H2>
+<P>It is very important to understand how incomes are growing within India and other countries as a whole and on a per capital basis.These are critical variable to track and have important implications on livelihoods.
+<BR>Russia Brazil China Bangladesh India Pakistan</P>
+<div class="controls">
+  <label for="mixX">Start Date</label>
+  <input type="date"   id="minDate" value="2020-12-31">
+  <button onclick="updateChart2()">Filter</button>
+</div>
+    <div class="chart-container">
+      <div class="chart-box">
+        <canvas id="chartCanvas1" width="600" height="600"></canvas>
+	<H5>Source: Test</H5>
+      </div>
+      <div class="chart-box">
+        <canvas id="chartCanvas2" width="600" height="600"></canvas>
+	<H5>Source: Test</H5>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-box">
+        <canvas id="chartCanvas3" width="600" height="600"></canvas>
+	<H5>Source: Test</H5>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="chartCanvas4" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas5" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas6" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas7" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas8" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas9" width="100" height="60"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="chartCanvas10" width="100" height="60"></canvas>
+    </div>
+    <script>
+        let initialLabels = [];
+	let initialValues = [];
+	let initialValues2 = [];
+	let chart;
+
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    initialLabels = parsedData.data.map(row => row['date']);
+                    initialValues = parsedData.data.map(row => row['code1']);
+                    initialValues2 = parsedData.data.map(row => row['code2']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas1').getContext('2d');
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: initialLabels,
+                            datasets: [{
+                                label: 'Code 1',
+                                data: initialValues,
+                                borderColor: 'rgba(255, 103, 31, 1)',
+				color: 'rgba(255, 103, 31, 1)',
+				backgroundColor: 'rgba(255, 103, 31, 1)',
+                                borderWidth: 3,
+				pointRadius: 3
+                            },
+                            {
+                                label: 'Code 2',
+                                data: initialValues2,
+                                borderColor: 'rgba(255, 0, 0, 1)',
+				color: 'rgba(255, 0, 0, 1)',
+				backgroundColor: 'rgba(255, 0, 0, 1)',
+                                borderWidth: 1,
+				pointRadius: 2
+                            }
+			]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Nominal GDP',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Date'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'USD (Trillions)'
+						}
+					}
+				}
+			}
+
+                    });
+                }
+            });
+        });
+        function updateChart(){
+ 	    const minX = parseFloat(document.getElementById('minX').value)
+	    const filteredLabels  = initialLabels.slice(minX);
+	    const filteredValues  = initialValues.slice(minX);
+	    const filteredValues2 = initialValues2.slice(minX);
+
+	    chart.data.labels = filteredLabels;
+	    chart.data.datasets[0].data = filteredValues;
+	    chart.data.datasets[1].data = filteredValues2;
+	    chart.update();
+	}
+        function updateChart2(){
+ 	    const minDate = document.getElementById('minDate').value;
+	    const filteredLabels  = initialLabels.filter(label => label >= minDate);
+	    const filteredValues  = initialValues.filter((value, index) => initialLabels[index] >= minDate);
+	    const filteredValues2 = initialValues2.filter((value, index) => initialLabels[index] >= minDate);
+
+	    chart.data.labels = filteredLabels;
+	    chart.data.datasets[0].data = filteredValues;
+	    chart.data.datasets[1].data = filteredValues2;
+	    chart.update();
+	}
+    </script>
+<! THIS IS THE SCRIPT FOR A BAR GRAPH>
+    <script>
+	let chart;
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas2').getContext('2d');
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Bar Graph',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Date'
+						}
+					},
+					y: {
+						title: {
+							display: true,
+							text: 'Value'
+						}
+					}
+				}
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Fetch and parse CSV
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    const labels = parsedData.data.map(row => row['date']);
+                    const values = parsedData.data.map(row => row['code1']);
+
+                    // Render chart
+                    const ctx = document.getElementById('chartCanvas3').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Life Expectancy',
+                                data: values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2
+                            }]
+                        },
+			options: {
+				plugins: {
+					title: {
+						display: true,
+						text: 'Radar Chart',
+						font: {
+							size: 18
+						}
+					},
+					subtitle: {
+						display: true,
+						text: 'Graph Subtitle',
+						font: {
+							size: 14
+						}
+					}
+				},
+
+			}
+                    });
+                }
+            });
+        });
+    </script>
+
+       
+
+
+</body>
+</html>
