@@ -45,69 +45,7 @@
     <div class="chart-container">
       <canvas id="chartCanvas10" width="100" height="60"></canvas>
     </div>
-    <script>
-        // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            Papa.parse(csvData, {
-                header: true,
-                dynamicTyping: true,
-                complete: function(parsedData) {
-                    const labels = parsedData.data.map(row => row['date']);
-                    const values = parsedData.data.map(row => row['code1']);
-
-                    // Render chart
-                    const ctx = document.getElementById('chartCanvas1').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Life Expectancy',
-                                data: values, values,
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 2
-                            }]
-                        },
-			options: {
-				plugins: {
-					title: {
-						display: true,
-						text: 'Line Graph',
-						font: {
-							size: 18
-						}
-					},
-					subtitle: {
-						display: true,
-						text: 'Graph Subtitle',
-						font: {
-							size: 14
-						}
-					}
-				},
-				scales: {
-					x: {
-						title: {
-							display: true,
-							text: 'Date'
-						}
-					},
-					y: {
-						title: {
-							display: true,
-							text: 'Value'
-						}
-					}
-				}
-			}
-
-                    });
-                }
-            });
-        });
-    </script>
+    
 <! THIS IS THE SCRIPT FOR A BAR GRAPH>
     <script>
         // Fetch and parse CSV
