@@ -8,7 +8,6 @@
 
 <body>
 
-
 <div class="header">
   <h1>TIDES</h1>
     The Indian Dataset for Economic and Social Sciences
@@ -168,22 +167,12 @@
                 }
             });
         });
-        function updateChart(){
- 	    const minX = parseFloat(document.getElementById('minX').value)
-	    const filteredLabels  = initialLabels.slice(minX);
-	    const filteredValues  = initialValues.slice(minX);
-	    const filteredValues2 = initialValues2.slice(minX);
-
-	    chart.data.labels = filteredLabels;
-	    chart.data.datasets[0].data = filteredValues;
-	    chart.data.datasets[1].data = filteredValues2;
-	    chart.update();
 	}
         function updateChart2(){
  	    const minDate = new Date(document.getElementById('minDate').value);
-	    const filteredLabels  = initialLabels.filter(label => label >= minDate);
-	    const filteredValues  = initialValues.filter((value, index) => initialLabels[index] >= minDate);
-	    const filteredValues2 = initialValues2.filter((value, index) => initialLabels[index] >= minDate);
+	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
+	    const filteredValues  = initialValues.filter((value, index) => new Date(initialLabels[index]) >= minDate);
+	    const filteredValues2 = initialValues2.filter((value, index) => new Date(initialLabels[index]) >= minDate);
 
 	    chart.data.labels = filteredLabels;
 	    chart.data.datasets[0].data = filteredValues;
