@@ -69,7 +69,7 @@
         let initialLabels = [];
 	let initialValues = [];
 	let initialValues2 = [];
-
+	let chart;
 
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
@@ -90,7 +90,7 @@
 			
                     // Render chart
                     const ctx = document.getElementById('chartCanvas1').getContext('2d');
-                    chart = Chart(ctx, {
+                    chart = new Chart(ctx, {
                         type: 'line',
                         data: {
                             labels: initialLabels,
@@ -134,7 +134,7 @@
 				},
 				scales: {
 					x: {
-						type: 'time',
+						type: 'date',
 						time: {
 							unit: 'year',
 							stepSize: 2,
