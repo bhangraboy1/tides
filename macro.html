@@ -129,9 +129,15 @@
 				},
 				scales: {
 					x: {
+						type: 'time',
+						time: {
+							unit: 'year',
+							stepSize: 2,
+							dislayFormats: 'YYYY'
+						}
 						title: {
 							display: true,
-							type : 'date'
+							type : 'Year'
 						}
 					},
 					y: {
