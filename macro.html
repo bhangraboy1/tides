@@ -79,8 +79,8 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    initialLabels = parsedData.data.map(row => row {
-			const datString = row['date'];
+                    initialLabels = parsedData.data.map(row => {
+			const dateString = row['date'];
 			const date = new Date(dateString);
 			return date;
 		    });
