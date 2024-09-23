@@ -17,7 +17,14 @@ P { font-family: "Helvetica Neue";
     color: #00004d; 
     font-size: 18px
 }
-
+H1 { font-family: "Times-New-Roman";
+    color: black;
+    font-size: 20px
+}
+H2 { font-family: "Times-New-Roman";
+    color: black;
+    font-size: 18px
+}
 
 a { 
   color: white; 
