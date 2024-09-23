@@ -79,7 +79,7 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    initialLabels = parsedData.data.map(row => row['date']);
+                    initialLabels = parsedData.data.map(row => new Date(row['date']));
                     initialValues = parsedData.data.map(row => row['code1']);
                     initialValues2 = parsedData.data.map(row => row['code2']);
 		    console.log('Parsed Dates:', initialLabels);
