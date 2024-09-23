@@ -39,5 +39,27 @@ a:hover {
     .chart-box {
       width: 45%;
     }
-
+    div.intro {
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+    div.img_container {
+      margin-left: 100px;
+      margin-right: 100px;
+      text-align: center;
+    }
+    div.bottom {
+      position: absolute;
+      bottom: 22px;
+      left: 46px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    div.column {
+      float: left;
+      width: 30%;
+      padding: 5px;
+      position: relative;
+    }
 </style>
