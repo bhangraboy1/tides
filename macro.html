@@ -79,10 +79,15 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    initialLabels = parsedData.data.map(row => row['date']);
+                    initialLabels = parsedData.data.map(row => row {
+			const datString = row['date'];
+			const date = new Date(dateString);
+			return date;
+		    });
                     initialValues = parsedData.data.map(row => row['code1']);
                     initialValues2 = parsedData.data.map(row => row['code2']);
-
+		    console.log('Parsed Dates:', initialLabels);
+			
                     // Render chart
                     const ctx = document.getElementById('chartCanvas1').getContext('2d');
                     chart = new Chart(ctx, {
