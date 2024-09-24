@@ -91,16 +91,16 @@
 	let chart;
 
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/population.csv')
         .then(response => response.text())
         .then(csvData => {
             Papa.parse(csvData, {
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    initialLabels  = parsedData.data.map(row => new Date(row['date']));
-                    initialValues  = parsedData.data.map(row => row['code1']);
-                    initialValues2 = parsedData.data.map(row => row['code2']);
+                    initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+                    initialValues  = parsedData.data.map(row => row['IND_POP']);
+                    initialValues2 = parsedData.data.map(row => row['IND_POP2']);
 		    console.log('Parsed Dates:', initialLabels);
 			
                     // Render chart
