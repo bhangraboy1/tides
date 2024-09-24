@@ -90,8 +90,8 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    initialLabels = parsedData.data.map(row => new Date(row['date']));
-                    initialValues = parsedData.data.map(row => row['code1']);
+                    initialLabels  = parsedData.data.map(row => new Date(row['date']));
+                    initialValues  = parsedData.data.map(row => row['code1']);
                     initialValues2 = parsedData.data.map(row => row['code2']);
 		    console.log('Parsed Dates:', initialLabels);
 			
@@ -171,7 +171,7 @@
         function updateChart2(){
  	    const minDate = new Date(document.getElementById('minDate').value);
 	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
-	    const filteredValues  = initialValues.filter((value, index) => new Date(initialLabels[index]) >= minDate);
+	    const filteredValues  = initialValues.filter((value, index)  => new Date(initialLabels[index]) >= minDate);
 	    const filteredValues2 = initialValues2.filter((value, index) => new Date(initialLabels[index]) >= minDate);
 
 	    chart.data.labels = filteredLabels;
