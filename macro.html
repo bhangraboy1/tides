@@ -200,22 +200,37 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    const labels = parsedData.data.map(row => row['IND_GDPP']);
-                    const values = parsedData.data.map(row => row['CHN_GDPP']);
-
+                    initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+                    initialValues  = parsedData.data.map(row => row['IND_GDPP']);
+                    initialValues2 = parsedData.data.map(row => row['CHN_GDPP']);
                     // Render chart
                     const ctx = document.getElementById('chartCanvas2').getContext('2d');
                     chart2 = new Chart(ctx, {
                         type: 'line',
-                        data: {
-                            labels: labels,
+
+			data: {
+                            labels: initialLabels,
                             datasets: [{
-                                label: 'Life Expectancy',
-                                data: values,
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 2
-                            }]
-                        },
+                                label: 'IND',
+                                data: initialValues,
+                                borderColor: 'rgba(255, 103, 31, 1)',
+				color: 'rgba(255, 103, 31, 1)',
+				backgroundColor: 'rgba(255, 103, 31, 1)',
+                                borderWidth: 3,
+				pointRadius: 3
+                            },
+                            {
+                                label: 'CHN',
+                                data: initialValues2,
+                                borderColor: 'rgba(255, 0, 0, 1)',
+				color: 'rgba(255, 0, 0, 1)',
+				backgroundColor: 'rgba(255, 0, 0, 1)',
+                                borderWidth: 1,
+				pointRadius: 2
+                            }
+			]
+			},
+				    
 			options: {
 				plugins: {
 					title: {
