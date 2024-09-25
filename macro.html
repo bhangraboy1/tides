@@ -235,7 +235,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Bar Graph',
+						text: 'GDP Per Capital (USD)',
 						font: {
 							size: 18
 						}
@@ -250,15 +250,23 @@
 				},
 				scales: {
 					x: {
+						type: 'time',
+						time: {
+							unit: 'year',
+							stepSize: 2,
+							displayFormats: {
+								year: 'yyyy'
+							}
+						},
 						title: {
 							display: true,
-							text: 'Date'
+							text: 'Year'
 						}
 					},
 					y: {
 						title: {
 							display: true,
-							text: 'Value'
+							text: 'USD'
 						}
 					}
 				}
