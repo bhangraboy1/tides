@@ -6,20 +6,55 @@ body {
 }
 
 /* Header/Logo Title */
-.header {
-  padding: 0px;
-  text-align: center;
-  background: #FF671F;
-  color: white;
-  font-size: 15px;
-}
+  .header {
+	padding: 0px;
+	text-align: center;
+	background: #FF671F;
+	color: white;
+	font-size: 15px;
+   }
+/* Page Content */
+    .content {padding:20px;}
+
+    .chart-container {
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+    }
+    .chart-box {
+	width: 45%;
+    }
+    div.intro {
+	margin-left: 100px;
+      	margin-right: 100px;
+    }
+    div.img_container {
+	margin-left: 100px;
+	margin-right: 100px;
+	text-align: center;
+    }
+    div.bottom {
+	position: absolute;
+	bottom: 22px;
+	left: 46px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+    }
+    div.column {
+	float: left;
+	width: 30%;
+	padding: 5px;
+	position: relative;
+    }
+
 P { font-family: "Helvetica Neue";
     color: #00004d; 
     font-size: 18px
 }
 P2 { font-family: "Helvetica Neue";
     color: #00004d; 
-    font-size: 14px
+    font-size: 16px
 }
 H1 { font-family: "Times-New-Roman";
     color: white;
@@ -54,38 +89,5 @@ a:hover {
 }
 
 
-/* Page Content */
-.content {padding:20px;}
 
-    .chart-container {
-	display: flex;
-	justify-content: space-around;
-	margin: 0 auto;
-    }
-    .chart-box {
-      width: 45%;
-    }
-    div.intro {
-      margin-left: 100px;
-      margin-right: 100px;
-    }
-    div.img_container {
-      margin-left: 100px;
-      margin-right: 100px;
-      text-align: center;
-    }
-    div.bottom {
-      position: absolute;
-      bottom: 22px;
-      left: 46px;
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-    }
-    div.column {
-      float: left;
-      width: 30%;
-      padding: 5px;
-      position: relative;
-    }
 </style>
