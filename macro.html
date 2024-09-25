@@ -90,7 +90,7 @@
 	let chart;
 
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/population.csv')
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
         .then(response => response.text())
         .then(csvData => {
             Papa.parse(csvData, {
@@ -193,15 +193,15 @@
 <! THIS IS THE SCRIPT FOR A BAR GRAPH>
     <script>
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/data.csv')
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
         .then(response => response.text())
         .then(csvData => {
             Papa.parse(csvData, {
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                    const labels = parsedData.data.map(row => row['date']);
-                    const values = parsedData.data.map(row => row['code1']);
+                    const labels = parsedData.data.map(row => row['IND_GDPP']);
+                    const values = parsedData.data.map(row => row['CHN_GDPP']);
 
                     // Render chart
                     const ctx = document.getElementById('chartCanvas2').getContext('2d');
