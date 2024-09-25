@@ -100,7 +100,7 @@
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
                     initialValues  = parsedData.data.map(row => row['IND_POP']);
-                    initialValues2 = parsedData.data.map(row => row['IND_POP2']);
+                    initialValues2 = parsedData.data.map(row => row['CHN_POP']);
 		    console.log('Parsed Dates:', initialLabels);
 			
                     // Render chart
