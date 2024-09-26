@@ -29,10 +29,10 @@
   <input type="date"   id="minDate" value="1960-12-31">
   <button onclick="updateChart2()">Filter</button>
   <div id="regionselector">
-    <label><input type="checkbox" name="region" value="India">India</label>
-    <label><input type="checkbox" name="region" value="China">China</label>
+    <label><input type="checkbox" name="region" value="IND">India</label>
+    <label><input type="checkbox" name="region" value="CHN">China</label>
     <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
-    <button onclick="updateChart()">Update Chart</button>button>	  
+    <button onclick="updateChart()">Update Chart</button>	  
 </div>
     <div class="chart-container">
       <div class="chart-box">
@@ -81,6 +81,11 @@
 	let initialValues2 = [];
 	let chart;
 
+	let regionData = {
+		IND: { data: [], color: 'rgba(255, 103, 31, 1)' },
+		CHN: { data: [], color: 'rgba(255, 0, 0, 1)' },
+		BRICS: {data: [], color: 'rgba(255, 255, 255, 1)' }
+	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
         .then(response => response.text())
@@ -92,33 +97,30 @@
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
                     initialValues  = parsedData.data.map(row => row['IND_POP']);
                     initialValues2 = parsedData.data.map(row => row['CHN_POP']);
-		    console.log('Parsed Dates:', initialLabels);
+		    regionData.IND.data = parseData.data.map(row => row['IND_POP']);
+		    regionData.CHN.data = parseData.data.map(row => row['CHN_POP']);
+		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 			
+		    console.log('Parsed Dates:', initialLabels);
+		}
+	    });
+	});
+	function renderChart(selectedRegions) {
+		const datasets = selectedRegions.map(country => ({
+			label: region,
+			data: regionData[region].data,
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: 3,
+			pointRadius: 3
+	}));
                     // Render chart
                     const ctx = document.getElementById('chartCanvas1').getContext('2d');
                     chart = new Chart(ctx, {
                         type: 'line',
                         data: {
                             labels: initialLabels,
-                            datasets: [{
-                                label: 'IND',
-                                data: initialValues,
-                                borderColor: 'rgba(255, 103, 31, 1)',
-				color: 'rgba(255, 103, 31, 1)',
-				backgroundColor: 'rgba(255, 103, 31, 1)',
-                                borderWidth: 3,
-				pointRadius: 3
-                            },
-                            {
-                                label: 'CHN',
-                                data: initialValues2,
-                                borderColor: 'rgba(255, 0, 0, 1)',
-				color: 'rgba(255, 0, 0, 1)',
-				backgroundColor: 'rgba(255, 0, 0, 1)',
-                                borderWidth: 1,
-				pointRadius: 2
-                            }
-			]
+                            datasets: datasets
                         },
 			options: {
 				plugins: {
@@ -166,7 +168,10 @@
                 }
             });
 	});
-	
+	function updateChart() {
+		const selectedRegions = Array.from(document.quesrySelectorAll('input[name="region"]:checked')).map(checkboxx => checkbox.value);
+		renderChart(selectedRegion);
+	}
         function updateChart2(){
  	    const minDate = new Date(document.getElementById('minDate').value);
 	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
