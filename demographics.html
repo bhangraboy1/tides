@@ -113,10 +113,10 @@
 			backgroundColor: regionData[region].color,
 			borderWidth: 3,
 			pointRadius: 3
-	}));
+		}));
                     // Render chart
-                    const ctx = document.getElementById('chartCanvas1').getContext('2d');
-                    chart = new Chart(ctx, {
+                const ctx = document.getElementById('chartCanvas1').getContext('2d');
+                chart = new Chart(ctx, {
                         type: 'line',
                         data: {
                             labels: initialLabels,
@@ -164,10 +164,10 @@
 				}
 			}
 
-                    });
-                }
-            });
-	});
+                });
+        }
+           
+	
 	function updateChart() {
 		const selectedRegions = Array.from(document.quesrySelectorAll('input[name="region"]:checked')).map(checkboxx => checkbox.value);
 		renderChart(selectedRegion);
