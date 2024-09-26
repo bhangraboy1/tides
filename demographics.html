@@ -192,11 +192,11 @@
 	function updateChart() {
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
 		if (selectedRegions.includes('BRICS')) {
-			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF);
+			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
 			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
 		}
 		if (selectedRegions.includes('TOP5')) {
-			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND);
+			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
 			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
 		}
 		renderChart([...new Set(selectedRegions)]);
