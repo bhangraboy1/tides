@@ -170,7 +170,7 @@
 	
 	function updateChart() {
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
-		renderChart(selectedRegion);
+		renderChart(selectedRegions);
 	}
         function updateChart2(){
  	    const minDate = new Date(document.getElementById('minDate').value);
