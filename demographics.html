@@ -82,9 +82,9 @@
 	let chart;
 
 	let regionData = {
-		IND:   { data: [], color: 'rgba(255, 103, 31, 1)',  borderwidth: 3, pointradius: 3 },
-		CHN:   { data: [], color: 'rgba(255, 0, 0, 1)',     borderwidth: 1, pointradius: 1 },
-		BRICS: { data: [], color: 'rgba(255, 255, 255, 1)', borderwidth: 1, pointradius: 1 }
+		IND: { data: [], color: 'rgba(255, 103, 31, 1)',  borderwidth: 3, pointradius: 3 },
+		CHN: { data: [], color: 'rgba(255, 0, 0, 1)',     borderwidth: 1, pointradius: 1 },
+		BRA: { data: [], color: 'rgba(255, 200,100, 1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
@@ -99,6 +99,8 @@
                     initialValues2 = parsedData.data.map(row => row['CHN_POP']);
 		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
 		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
+		    regionData.BRA.data = parsedData.data.map(row => row['BRA_POP']);
+
 		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 			
 		    console.log('Parsed Dates:', initialLabels);
@@ -173,7 +175,11 @@
 	
 	function updateChart() {
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
-		renderChart(selectedRegions);
+		if (selectedRegions.includes('BRICS')) {
+			selectedRegions.push('BRA', 'IND', 'CHN');
+			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
+		}
+		renderChart([...new Set(selectedRegions)]);
 	}
         function updateChart2(){
  	    const minDate = new Date(document.getElementById('minDate').value);
