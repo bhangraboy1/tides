@@ -106,7 +106,7 @@
 	    });
 	});
 	function renderChart(selectedRegions) {
-		const datasets = selectedRegions.map(country => ({
+		const datasets = selectedRegions.map(region => ({
 			label: region,
 			data: regionData[region].data,
 			borderColor: regionData[region].color,
