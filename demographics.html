@@ -26,8 +26,13 @@
 <HR>	
 <div class="controls">
   <label for="mixX">Start Date</label>
-  <input type="date"   id="minDate" value="2020-12-31">
+  <input type="date"   id="minDate" value="1960-12-31">
   <button onclick="updateChart2()">Filter</button>
+  <div id="regionselector">
+    <label><input type="checkbox" name="region" value="India">India</label>
+    <label><input type="checkbox" name="region" value="China">China</label>
+    <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
+    <button onclick="updateChart()">Update Chart</button>button>	  
 </div>
     <div class="chart-container">
       <div class="chart-box">
