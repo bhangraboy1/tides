@@ -82,9 +82,9 @@
 	let chart;
 
 	let regionData = {
-		IND: { data: [], color: 'rgba(255, 103, 31, 1)' },
-		CHN: { data: [], color: 'rgba(255, 0, 0, 1)' },
-		BRICS: {data: [], color: 'rgba(255, 255, 255, 1)' }
+		IND:   { data: [], color: 'rgba(255, 103, 31, 1)',  borderwidth: 3, pointradius: 3 },
+		CHN:   { data: [], color: 'rgba(255, 0, 0, 1)',     borderwidth: 1, pointradius: 1 },
+		BRICS: { data: [], color: 'rgba(255, 255, 255, 1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
@@ -111,8 +111,8 @@
 			data: regionData[region].data,
 			borderColor: regionData[region].color,
 			backgroundColor: regionData[region].color,
-			borderWidth: 3,
-			pointRadius: 3
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointradius
 		}));
                     // Render chart
                 const ctx = document.getElementById('chartCanvas1').getContext('2d');
