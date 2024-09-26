@@ -40,8 +40,8 @@
 <H2>Demographics</H2>
 <div class="intro"><P>A good understanding of the population trends over time and into the future is important in 
 	forecasting aggregate macroeconomic variables of interest. It is critical to understand the gender, racial, 
-	and cast breakdown of the population. This will have implications on the targetting of government programs,
-	the size of the 'working age' labor force, and caring responsibilities. 
+	and caste breakdown of the population. This will have implications on the targetting of government programs,
+	the size of the 'working age' labor force, and to better understand caring responsibilities. 
 
 </P>
 </div>
@@ -107,13 +107,13 @@
 	let regionData = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
-		BRA: { data: [], color: 'rgba(253, 220,   2, 1)', borderwidth: 1, pointradius: 1 },
-		USA: { data: [], color: 'rgba(  0,   0, 128, 1)', borderwidth: 1, pointradius: 1 },
-		GBR: { data: [], color: 'rgba( 31,  81, 255, 1)', borderwidth: 1, pointradius: 1 },
-		JPN: { data: [], color: 'rgba(255,  0,    0, 1)', borderwidth: 1, pointradius: 1 },
-		DEU: { data: [], color: 'rgba(150, 150,   0, 1)', borderwidth: 1, pointradius: 1 },
-		RUS: { data: [], color: 'rgba( 76,  92,  80, 1)', borderwidth: 1, pointradius: 1 },
-		ZAF: { data: [], color: 'rgba(50,   50,  50, 1)', borderwidth: 1, pointradius: 1 }
+		BRA: { data: [], color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
+		USA: { data: [], color: 'rgba(  0,   0, 128,  1)', borderwidth: 1, pointradius: 1 },
+		GBR: { data: [], color: 'rgba( 31,  81, 255,  1)', borderwidth: 1, pointradius: 1 },
+		JPN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		DEU: { data: [], color: 'rgba(150, 150,   0,  1)', borderwidth: 1, pointradius: 1 },
+		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
+		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
@@ -220,17 +220,16 @@
 		}
 		renderChart([...new Set(selectedRegions)]);
 	}
-        function updateChart2(){
+        function updateChart2() {
  	    const minDate = new Date(document.getElementById('minDate').value);
 	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
-	    const filteredValues  = initialValues.filter((value, index)  => new Date(initialLabels[index]) >= minDate);
-	    const filteredValues2 = initialValues2.filter((value, index) => new Date(initialLabels[index]) >= minDate);
+
+	    chart.data.datasets.forEach((dataset, index) => {
+		const regionKey = dataset.label;
+		dataset.data = regionData[regionKey].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate);
+	    });
 
 	    chart.data.labels = filteredLabels;
-	    chart.data.datasets[0].data = filteredValues;
-	    if (chart.data.datasets[1]) {
-		    chart.data.datasets[1].data = filteredValues2;
-	    }
 	    chart.update();
 	}
     </script>
