@@ -116,6 +116,9 @@
 		}));
                     // Render chart
                 const ctx = document.getElementById('chartCanvas1').getContext('2d');
+		if (chart) {
+			chart.destroy(); // Destroy previous chart instance
+		}
                 chart = new Chart(ctx, {
                         type: 'line',
                         data: {
