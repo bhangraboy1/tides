@@ -97,8 +97,8 @@
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
                     initialValues  = parsedData.data.map(row => row['IND_POP']);
                     initialValues2 = parsedData.data.map(row => row['CHN_POP']);
-		    regionData.IND.data = parseData.data.map(row => row['IND_POP']);
-		    regionData.CHN.data = parseData.data.map(row => row['CHN_POP']);
+		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
+		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
 		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 			
 		    console.log('Parsed Dates:', initialLabels);
