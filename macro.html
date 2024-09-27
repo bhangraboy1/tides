@@ -88,6 +88,7 @@
     </div>
     <script>
         let initialLabels = [];
+	let billion = 1000000000
 	let chart;
 	let regionData = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
@@ -109,15 +110,15 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP']);
-		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP']);
-		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP']);
-		    regionData.USA.data = parsedData.data.map(row => row['USA_GDP']);
-		    regionData.GBR.data = parsedData.data.map(row => row['GBR_GDP']);
-		    regionData.JPN.data = parsedData.data.map(row => row['JPN_GDP']);
-		    regionData.DEU.data = parsedData.data.map(row => row['DEU_GDP']);
-		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP']);
-		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP']);
+		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] / billion);
+		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / billion);
+		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / billion);
+		    regionData.USA.data = parsedData.data.map(row => row['USA_GDP'] / billion);
+		    regionData.GBR.data = parsedData.data.map(row => row['GBR_GDP'] / billion);
+		    regionData.JPN.data = parsedData.data.map(row => row['JPN_GDP'] / billion);
+		    regionData.DEU.data = parsedData.data.map(row => row['DEU_GDP'] / billion);
+		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / billion);
+		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / billion);
 			
 		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
@@ -150,7 +151,7 @@
 				plugins: {
 					title: {
 						display: true,
-						text: 'Nominal GDP (USD)',
+						text: 'Nominal GDP (USD, billions)',
 						font: {
 							size: 18
 						}
@@ -182,7 +183,7 @@
 					y: {
 						title: {
 							display: true,
-							text: 'Nominal GDP (USD)'
+							text: 'Nominal GDP (USD, billions)'
 						}
 					}
 				}
