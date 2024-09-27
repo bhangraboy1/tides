@@ -33,16 +33,19 @@
 <HR>	
 <div class="controls">
   <label for="mixX">Start Date</label>
-  <input type="date"   id="minDate" value="2020-12-31">
-  <button onclick="updateChart2()">Filter</button>
+  <input type="date"   id="minDate" value="1960-12-31">
+  <div id="regionselector">
+    <label><input type="checkbox" name="region" value="IND">India</label>
+    <label><input type="checkbox" name="region" value="CHN">China</label>
+    <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
+    <label><input type="checkbox" name="region" value="TOP5">Top 5</label>
+    <button onclick="updateChart()">Update Chart</button>	  
+</div>
 </div>
     <div class="chart-container">
       <div class="chart-box">
-	<H2>Historical Population Trends</H2>
-	<P2>India's population reached a level higher than China's for the first time in 2023. 
-	As well China's population was lower in 2023 as compared to 2022. If, as expected, this continues
-	for the changes in the shape, size, and composition of the labor force in China may have important
-	economics implications.
+	<H2>Gross Domestic Product</H2>
+	<P2>GDP is a measure of the monetary value of final goods and services that are produced within a country.
 	</P2>
         <canvas id="chartCanvas1" width="600" height="600"></canvas>
 	<H5>Source: World Bank Data accessed through WBGAPI. </H5>
@@ -88,7 +91,17 @@
 	let initialValues = [];
 	let initialValues2 = [];
 	let chart;
-
+	let regionData = {
+		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
+		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		BRA: { data: [], color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
+		USA: { data: [], color: 'rgba(  0,   0, 128,  1)', borderwidth: 1, pointradius: 1 },
+		GBR: { data: [], color: 'rgba( 31,  81, 255,  1)', borderwidth: 1, pointradius: 1 },
+		JPN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		DEU: { data: [], color: 'rgba(150, 150,   0,  1)', borderwidth: 1, pointradius: 1 },
+		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
+		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 }
+	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
@@ -98,41 +111,51 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
+		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
+		    regionData.BRA.data = parsedData.data.map(row => row['BRA_POP']);
+		    regionData.USA.data = parsedData.data.map(row => row['USA_POP']);
+		    regionData.GBR.data = parsedData.data.map(row => row['GBR_POP']);
+		    regionData.JPN.data = parsedData.data.map(row => row['JPN_POP']);
+		    regionData.DEU.data = parsedData.data.map(row => row['DEU_POP']);
+		    regionData.RUS.data = parsedData.data.map(row => row['RUS_POP']);
+		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_POP']);
+	
                     initialValues  = parsedData.data.map(row => row['IND_GDP']);
                     initialValues2 = parsedData.data.map(row => row['CHN_GDP']);
-		    console.log('Parsed Dates:', initialLabels);
 			
-                    // Render chart
-                    const ctx = document.getElementById('chartCanvas1').getContext('2d');
-                    chart = new Chart(ctx, {
+		    renderChart(['IND', 'CHN']); // Default Countries to be shown
+
+		    console.log('Parsed Dates:', initialLabels);
+		}
+	    });
+	});
+	function renderChart(selectedRegions) {
+                // Render chart
+		const datasets = selectedRegions.map(region => ({
+			label: region,
+			data: regionData[region].data,
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointRadius
+		}));
+			
+                const ctx = document.getElementById('chartCanvas1').getContext('2d');
+		if (chart) {
+			chart.destroy(); // Destroy previous Chart instance
+		}
+                chart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: initialLabels,
-                            datasets: [{
-                                label: 'IND',
-                                data: initialValues,
-                                borderColor: 'rgba(255, 103, 31, 1)',
-				color: 'rgba(255, 103, 31, 1)',
-				backgroundColor: 'rgba(255, 103, 31, 1)',
-                                borderWidth: 3,
-				pointRadius: 3
-                            },
-                            {
-                                label: 'CHN',
-                                data: initialValues2,
-                                borderColor: 'rgba(255, 0, 0, 1)',
-				color: 'rgba(255, 0, 0, 1)',
-				backgroundColor: 'rgba(255, 0, 0, 1)',
-                                borderWidth: 1,
-				pointRadius: 2
-                            }
-			]
+				labels: initialLabels,
+                                datasets: datasets
                         },
 			options: {
 				plugins: {
 					title: {
 						display: true,
-						text: 'Population',
+						text: 'Nominal GDP (USD)',
 						font: {
 							size: 18
 						}
@@ -164,7 +187,7 @@
 					y: {
 						title: {
 							display: true,
-							text: 'Population'
+							text: 'Nominal GDP (USD)'
 						}
 					}
 				}
@@ -172,21 +195,37 @@
 
                     });
                 }
-            });
-	});
-	
-        function updateChart2(){
- 	    const minDate = new Date(document.getElementById('minDate').value);
-	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
-	    const filteredValues  = initialValues.filter((value, index)  => new Date(initialLabels[index]) >= minDate);
-	    const filteredValues2 = initialValues2.filter((value, index) => new Date(initialLabels[index]) >= minDate);
 
-	    chart.data.labels = filteredLabels;
-	    chart.data.datasets[0].data = filteredValues;
-	    if (chart.data.datasets[1]) {
-		    chart.data.datasets[1].data = filteredValues2;
-	    }
-	    chart.update();
+	
+        function updateChart(){
+		// Get Selected Regions
+		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
+		if (selectedRegions.includes('BRICS')) {
+			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
+			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
+		}
+		if (selectedRegions.includes('TOP5')) {
+			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
+			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
+		}
+		
+		// Filter by Start Date
+		const minDate = new Date(document.getElementById('minDate').value);
+		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
+		
+		// Filter dataset based on Selected Regions
+		const datasets = [...new Set(selectedRegions)].map(region => ({
+			label: region,
+			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointradius
+	
+		}));
+		chart.data.labels = filteredLabels;
+		chart.data.datasets = datasets;
+		chart.update();
 	}
     </script>
     Source: 
