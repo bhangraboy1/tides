@@ -7,6 +7,7 @@ body {
 
 /* Header/Logo Title */
   .header {
+	position: sticky;
 	padding: 0px;
 	text-align: center;
 	background: #FF671F;
