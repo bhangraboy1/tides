@@ -204,6 +204,7 @@
         }
            
 	function updateChart() {
+		// Get Selected Regions
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
 		if (selectedRegions.includes('BRICS')) {
 			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
@@ -217,7 +218,8 @@
 		// Filter by Start Date
 		const minDate = new Date(document.getElementById('minDate').value);
 		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
-
+		
+		// Filter dataset based on Selected Regions
 		const datasets = [...new Set(selectedRegions)].map(region => ({
 			label: region,
 			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
