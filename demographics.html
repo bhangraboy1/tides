@@ -100,8 +100,8 @@
     </div>
     <script>
         let initialLabels = [];
-	let initialValues = [];
-	let initialValues2 = [];
+//	let initialValues = [];
+//	let initialValues2 = [];
 	let chart;
 
 	let regionData = {
@@ -124,8 +124,8 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-                    initialValues  = parsedData.data.map(row => row['IND_POP']);
-                    initialValues2 = parsedData.data.map(row => row['CHN_POP']);
+//                    initialValues  = parsedData.data.map(row => row['IND_POP']);
+//                    initialValues2 = parsedData.data.map(row => row['CHN_POP']);
 		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
 		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
 		    regionData.BRA.data = parsedData.data.map(row => row['BRA_POP']);
@@ -218,8 +218,25 @@
 			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
 			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
 		}
-		renderChart([...new Set(selectedRegions)]);
-	}
+//		renderChart([...new Set(selectedRegions)]);
+		
+		// Filter by Start Date
+		const minDate = new Date(document.getElementById('minDate').value);
+		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
+
+		const datasets = [...new Set(selectedRegions)].map(region => ({
+			label: region,
+			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointradius
+	
+		}));
+		chart.data.labels = filteredLabels;
+		chart.datasets = datasets;
+		chart.update();
+	}								
         function updateChart2() {
  	    const minDate = new Date(document.getElementById('minDate').value);
 	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
