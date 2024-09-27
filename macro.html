@@ -228,6 +228,20 @@
     Source: 
 <! THIS IS THE SCRIPT FOR A BAR GRAPH>
     <script>
+        let initialLabels = [];
+	let trillion = 1000000000000
+	let chart;
+	let regionData2 = {
+		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
+		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		BRA: { data: [], color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
+		USA: { data: [], color: 'rgba(  0,   0, 128,  1)', borderwidth: 1, pointradius: 1 },
+		GBR: { data: [], color: 'rgba( 31,  81, 255,  1)', borderwidth: 1, pointradius: 1 },
+		JPN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		DEU: { data: [], color: 'rgba(150, 150,   0,  1)', borderwidth: 1, pointradius: 1 },
+		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
+		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 }
+	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
         .then(response => response.text())
