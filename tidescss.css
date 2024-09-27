@@ -35,8 +35,8 @@ body {
     }
     div.bottom {
 	position: absolute;
-	bottom: 5vh;
-	left: 5vw;
+	bottom: 3vh;
+	left: 3vw;
 	color: white;
 	font-weight: bold;
 	font-size: 20px;
