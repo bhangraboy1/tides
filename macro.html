@@ -220,10 +220,21 @@
 			pointRadius: regionData[region].pointradius
 	
 		}));
+		const datasets2 = [...new Set(selectedRegions)].map(region => ({
+			label: region,
+			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels2[idx]) >= minDate),
+			borderColor: regionData2[region].color,
+			backgroundColor: regionData2[region].color,
+			borderWidth: regionData2[region].borderwidth,
+			pointRadius: regionData2[region].pointradius
+	
+		}));
 		chart.data.labels = filteredLabels;
 		chart.data.datasets = datasets;
 		chart.update();
 		
+		chart2.data.labels = filteredLabels;
+		chart2.data.datasets = datasets2;
 		chart2.update();
 	}
     </script>
@@ -262,11 +273,11 @@
 		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP']);
 		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP']);
 
-		    renderChart(['IND', 'CHN']); // Default Countries to be shown
+		    renderChart2(['IND', 'CHN']); // Default Countries to be shown
 		}
 	     });
 	});
-	function renderChart(selectedRegions) {
+	function renderChart2(selectedRegions) {
 		const datasets = selectedRegions.map(region => ({
 			label: region,
 			data: regionData2[region].data,
@@ -285,7 +296,7 @@
         		type: 'line',
 			data: {
                         	labels: initialLabels2,
-                                data: datasets
+                                datasets: datasets
                         },				    
 			options: {
 				plugins: {
