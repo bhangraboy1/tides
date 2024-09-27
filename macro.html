@@ -88,8 +88,6 @@
     </div>
     <script>
         let initialLabels = [];
-	let initialValues = [];
-	let initialValues2 = [];
 	let chart;
 	let regionData = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
@@ -111,18 +109,15 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
-		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
-		    regionData.BRA.data = parsedData.data.map(row => row['BRA_POP']);
-		    regionData.USA.data = parsedData.data.map(row => row['USA_POP']);
-		    regionData.GBR.data = parsedData.data.map(row => row['GBR_POP']);
-		    regionData.JPN.data = parsedData.data.map(row => row['JPN_POP']);
-		    regionData.DEU.data = parsedData.data.map(row => row['DEU_POP']);
-		    regionData.RUS.data = parsedData.data.map(row => row['RUS_POP']);
-		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_POP']);
-	
-                    initialValues  = parsedData.data.map(row => row['IND_GDP']);
-                    initialValues2 = parsedData.data.map(row => row['CHN_GDP']);
+		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP']);
+		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP']);
+		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP']);
+		    regionData.USA.data = parsedData.data.map(row => row['USA_GDP']);
+		    regionData.GBR.data = parsedData.data.map(row => row['GBR_GDP']);
+		    regionData.JPN.data = parsedData.data.map(row => row['JPN_GDP']);
+		    regionData.DEU.data = parsedData.data.map(row => row['DEU_GDP']);
+		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP']);
+		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP']);
 			
 		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
