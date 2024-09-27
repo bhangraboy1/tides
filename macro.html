@@ -194,7 +194,7 @@
                 }
 
 	
-        function updateChart(){
+        function updateChart() {
 		// Get Selected Regions
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
 		if (selectedRegions.includes('BRICS')) {
@@ -237,36 +237,38 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-                    initialValues  = parsedData.data.map(row => row['IND_GDPP']);
-                    initialValues2 = parsedData.data.map(row => row['CHN_GDPP']);
-                    // Render chart
-                    const ctx = document.getElementById('chartCanvas2').getContext('2d');
-                    chart2 = new Chart(ctx, {
-                        type: 'line',
+		    regionData2.IND.data = parsedData.data.map(row => row['IND_GDPP']);
+		    regionData2.CHN.data = parsedData.data.map(row => row['CHN_GDPP']);
+		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP']);
+		    regionData2.USA.data = parsedData.data.map(row => row['USA_GDPP']);
+		    regionData2.GBR.data = parsedData.data.map(row => row['GBR_GDPP']);
+		    regionData2.JPN.data = parsedData.data.map(row => row['JPN_GDPP']);
+		    regionData2.DEU.data = parsedData.data.map(row => row['DEU_GDPP']);
+		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP']);
+		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP']);
 
+		    renderChart(['IND', 'CHN']); // Default Countries to be shown
+		}
+	     });
+	});
+	function renderChart(selectedRegions) {
+		const datasets = selectedRegions.map(region => ({
+			label: region,
+			data: regionData2[region].data,
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointRadius
+		}));
+		// Render chart
+
+                const ctx = document.getElementById('chartCanvas2').getContext('2d');
+                chart2 = new Chart(ctx, {
+        		type: 'line',
 			data: {
-                            labels: initialLabels,
-                            datasets: [{
-                                label: 'IND',
-                                data: initialValues,
-                                borderColor: 'rgba(255, 103, 31, 1)',
-				color: 'rgba(255, 103, 31, 1)',
-				backgroundColor: 'rgba(255, 103, 31, 1)',
-                                borderWidth: 3,
-				pointRadius: 3
-                            },
-                            {
-                                label: 'CHN',
-                                data: initialValues2,
-                                borderColor: 'rgba(255, 0, 0, 1)',
-				color: 'rgba(255, 0, 0, 1)',
-				backgroundColor: 'rgba(255, 0, 0, 1)',
-                                borderWidth: 1,
-				pointRadius: 2
-                            }
-			]
-			},
-				    
+                        	labels: initialLabels,
+                                data: datasets
+                        },				    
 			options: {
 				plugins: {
 					title: {
@@ -309,8 +311,7 @@
 			}
                     });
                 }
-            });
-        });
+
     </script>
 
   
