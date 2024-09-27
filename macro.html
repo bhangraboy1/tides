@@ -90,7 +90,7 @@
 	let chart;
 
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/POP.csv')
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
         .then(csvData => {
             Papa.parse(csvData, {
@@ -98,8 +98,8 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-                    initialValues  = parsedData.data.map(row => row['IND_POP']);
-                    initialValues2 = parsedData.data.map(row => row['CHN_POP']);
+                    initialValues  = parsedData.data.map(row => row['IND_GDP']);
+                    initialValues2 = parsedData.data.map(row => row['CHN_GDP']);
 		    console.log('Parsed Dates:', initialLabels);
 			
                     // Render chart
