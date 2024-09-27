@@ -228,7 +228,7 @@
     Source: 
 <! THIS IS THE SCRIPT FOR A BAR GRAPH>
     <script>
-        let initialLabels = [];
+        let initialLabels2 = [];
 	let chart;
 	let regionData2 = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
@@ -279,7 +279,7 @@
                 chart2 = new Chart(ctx, {
         		type: 'line',
 			data: {
-                        	labels: initialLabels,
+                        	labels: initialLabels2,
                                 data: datasets
                         },				    
 			options: {
