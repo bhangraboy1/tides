@@ -276,6 +276,9 @@
 		// Render chart
 
                 const ctx = document.getElementById('chartCanvas2').getContext('2d');
+		if (chart2) {
+			chart2.destroy(); // Destroy previous Chart instance
+		}
                 chart2 = new Chart(ctx, {
         		type: 'line',
 			data: {
