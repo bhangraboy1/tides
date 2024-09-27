@@ -49,7 +49,7 @@
 <div class="controls">
   <label for="mixX">Start Date</label>
   <input type="date"   id="minDate" value="1960-12-31">
-  <button onclick="updateChart2()" class="buttonStyle">Filter</button>
+
   <div id="regionselector">
     <label><input type="checkbox" name="region" value="IND">India</label>
     <label><input type="checkbox" name="region" value="CHN">China</label>
@@ -69,7 +69,7 @@
 	<H5>Source: World Bank Data accessed through WBGAPI. </H5>
       </div>
     </div>
-
+<HR>
     <div class="chart-container">
       <div class="chart-box">
         <canvas id="chartCanvas3" width="600" height="600"></canvas>
@@ -100,10 +100,7 @@
     </div>
     <script>
         let initialLabels = [];
-//	let initialValues = [];
-//	let initialValues2 = [];
 	let chart;
-
 	let regionData = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
@@ -124,8 +121,6 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-//                    initialValues  = parsedData.data.map(row => row['IND_POP']);
-//                    initialValues2 = parsedData.data.map(row => row['CHN_POP']);
 		    regionData.IND.data = parsedData.data.map(row => row['IND_POP']);
 		    regionData.CHN.data = parsedData.data.map(row => row['CHN_POP']);
 		    regionData.BRA.data = parsedData.data.map(row => row['BRA_POP']);
@@ -207,7 +202,6 @@
                 });
         }
            
-	
 	function updateChart() {
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
 		if (selectedRegions.includes('BRICS')) {
@@ -218,7 +212,6 @@
 			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
 			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
 		}
-//		renderChart([...new Set(selectedRegions)]);
 		
 		// Filter by Start Date
 		const minDate = new Date(document.getElementById('minDate').value);
@@ -237,18 +230,7 @@
 		chart.data.datasets = datasets;
 		chart.update();
 	}								
-        function updateChart2() {
- 	    const minDate = new Date(document.getElementById('minDate').value);
-	    const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
 
-	    chart.data.datasets.forEach((dataset, index) => {
-		const regionKey = dataset.label;
-		dataset.data = regionData[regionKey].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate);
-	    });
-
-	    chart.data.labels = filteredLabels;
-	    chart.update();
-	}
     </script>
     Source: 
 
