@@ -510,8 +510,8 @@
 		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP'] );
 		    chartConfigs[0].labels = initialLabels;
 			
-		    const datasets = convertToDatasets(regionData2); //convert regionData to a datasets array
-    		    initializeChart('chartCanvas4', datasets, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+		    const datasets2 = convertToDatasets(regionData2); //convert regionData to a datasets array
+    		    initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', initialLabels);
 		}
