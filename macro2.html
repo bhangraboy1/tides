@@ -129,7 +129,7 @@
 		// Filter dataset based on Selected Regions
 		const datasets = [...new Set(selectedRegions)].map(region => ({
 			label: region,
-			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
+			data: regionData1[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
 			borderColor: regionData1[region].color,
 			backgroundColor: regionData1[region].color,
 			borderWidth: regionData1[region].borderwidth,
@@ -465,7 +465,8 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     chartConfigs[0].labels  = parsedData.data.map(row => new Date(row['Date']));
-		    
+		    initialLabels11 = chartConfigs[0].labels;
+
 		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 		    regionData1.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
