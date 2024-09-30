@@ -197,12 +197,20 @@
 		    regionData.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
 //		    regionData.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
 
-		    renderChart(['IND', 'CHN']); // Default Countries to be shown
+//		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
 		    console.log('Parsed Dates:', initialLabels);
 		}
 	    });
 	});
+	const datasets = selectedRegions.map(region => ({
+			label: region,
+			data: regionData[region].data,
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointRadius
+	}));
 	    
 	function renderChart(selectedRegions) {
                 // Render chart
