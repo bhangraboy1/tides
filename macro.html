@@ -429,6 +429,8 @@
 		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
 		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
+	let regionData2 = regionData1
+	
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
         .then(csvData => {
@@ -450,7 +452,6 @@
 		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
 		    chartConfigs[0].labels = initialLabels;
 			
-//		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 		    chartConfigs.forEach(config => {
 			const datasets = convertToDatasets(config.data); //convert regionData to a datasets array
     			initializeChart(config.canvasId, datasets, config.labels, config.title, config.yAxisLabel);
@@ -460,6 +461,36 @@
 	    });
 	});
 
+	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+		    regionData2.IND.data = parsedData.data.map(row => row['IND_GDPP'] );
+		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP'] );
+		    regionData2.CHN.data = parsedData.data.map(row => row['CHN_GDPP'] );
+		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP'] );
+		    regionData2.USA.data = parsedData.data.map(row => row['USA_GDPP'] );
+		    regionData2.GBR.data = parsedData.data.map(row => row['GBR_GDPP'] );
+		    regionData2.JPN.data = parsedData.data.map(row => row['JPN_GDPP'] );
+		    regionData2.DEU.data = parsedData.data.map(row => row['DEU_GDPP'] );
+		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP'] );
+		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP'] );
+		    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP'] );
+		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP'] );
+		    chartConfigs[0].labels = initialLabels;
+			
+		    chartConfigs.forEach(config => {
+			const datasets = convertToDatasets(config.data); //convert regionData to a datasets array
+    			initializeChart(config.canvasId, datasets, config.labels, config.title, config.yAxisLabel);
+		    });
+		    console.log('Parsed Dates:', initialLabels);
+		}
+	    });
+	});
 	function convertToDatasets(regionData) {
 		return Object.keys(regionData).map(region => ({
         		label: region,
@@ -479,6 +510,13 @@
         		labels: initialLabels, 
        			title: 'Nominal GDP (USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)'
+    		},
+		{
+        		canvasId: 'chartCanvas4',
+        		data: regionData2, 
+        		labels: initialLabels, 
+       			title: 'GDP (Nominal) Per Capita (USD)', 
+        		yAxisLabel: 'USD'
     		}
    	// Add more configurations here as needed
 	];
