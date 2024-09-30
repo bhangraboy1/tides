@@ -204,71 +204,72 @@
 //	    });
 //	});
 	    
-	function renderChart(selectedRegions) {
+//	function renderChart(selectedRegions) {
                 // Render chart
-		const datasets = selectedRegions.map(region => ({
-			label: region,
-			data: regionData[region].data,
-			borderColor: regionData[region].color,
-			backgroundColor: regionData[region].color,
-			borderWidth: regionData[region].borderwidth,
-			pointRadius: regionData[region].pointRadius
-		}));
-			
-                const ctx = document.getElementById('chartCanvas1').getContext('2d');
-		if (chart) {
-			chart.destroy(); // Destroy previous Chart instance
-		}
-                chart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-				labels: initialLabels,
-                                datasets: datasets
-                        },
-			options: {
-				plugins: {
-					title: {
-						display: true,
-						text: 'Nominal GDP (USD, trillions)',
-						font: {
-							size: 18
-						}
-					},
-					subtitle: {
-						display: true,
-						text: 'Graph Subtitle',
-						font: {
-							size: 14
-						}
-					}
-
-				},
-				scales: {
-					x: {
-						type: 'time',
-						time: {
-							unit: 'year',
-							stepSize: 2,
-							displayFormats: {
-								year: 'yyyy'
-							}
-						},
-						title: {
-							display: true,
-							text: 'Year'
-						}
-					},
-					y: {
-						title: {
-							display: true,
-							text: 'Nominal GDP (USD, trillions)'
-						}
-					}
-				}
-			}
-
-                    });
-                }
+//		const datasets = selectedRegions.map(region => ({
+//			label: region,
+//			data: regionData[region].data,
+//			borderColor: regionData[region].color,
+//			backgroundColor: regionData[region].color,
+//			borderWidth: regionData[region].borderwidth,
+//			pointRadius: regionData[region].pointRadius
+//		}));
+//			
+//               const ctx = document.getElementById('chartCanvas1').getContext('2d');
+//		if (chart) {
+//			chart.destroy(); // Destroy previous Chart instance
+//		}
+//                chart = new Chart(ctx, {
+//                        type: 'line',
+//                       data: {
+//				labels: initialLabels,
+//                               datasets: datasets
+//  
+//                      },
+//			options: {
+//				plugins: {
+//					title: {
+//						display: true,
+//						text: 'Nominal GDP (USD, trillions)',
+//						font: {
+//							size: 18
+//						}
+//					},
+//					subtitle: {
+//						display: true,
+//						text: 'Graph Subtitle',
+//						font: {
+//							size: 14
+//						}
+//					}
+//
+//				},
+//				scales: {
+//					x: {
+//						type: 'time',
+//						time: {
+//							unit: 'year',
+//							stepSize: 2,
+//							displayFormats: {
+//								year: 'yyyy'
+//							}
+//						},
+//						title: {
+//							display: true,
+//							text: 'Year'
+//						}
+//					},
+//					y: {
+//						title: {
+//							display: true,
+//							text: 'Nominal GDP (USD, trillions)'
+//						}
+//					}
+//				}
+//			}
+//
+//                   });
+//               }
 
     </script>
     Source: 
