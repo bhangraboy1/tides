@@ -459,14 +459,25 @@
     		{
         		canvasId: 'chartCanvas3',
         		data: regionData1, 
-        		labels: initialLabels, 
+        		labels: 'test', 
        			title: 'Nominal GDP (USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)'
     		}
    	// Add more configurations here as needed
 	];
+	function convertToDatasets(regionData) {
+		return Object.keys(regionData).map(region => ({
+        		label: region,
+        		data: regionData[region].data,
+        		borderColor: regionData[region].color,
+        		borderWidth: regionData[region].borderwidth,
+       			pointRadius: regionData[region].pointradius,
+        		fill: false
+    		}));
+	}
 
 	chartConfigs.forEach(config => {
+		const datasets = convertToDatasets(config.data); //convert regionData to a datasets array
     		initializeChart(config.canvasId, config.data, config.labels, config.title, config.yAxisLabel);
 	});
     </script>
