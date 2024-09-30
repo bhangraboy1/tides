@@ -145,15 +145,15 @@
 			pointRadius: regionData2[region].pointradius
 	
 		}));
-//		chart.data.labels = filteredLabels;
-//		chart.data.datasets = datasets;
-//		chart.update();
+		chart.data.labels = filteredLabels;
+		chart.data.datasets = datasets;
+		chart.update();
 		
-//		chart2.data.labels = filteredLabels;
-//		chart2.data.datasets = datasets2;
-//		chart2.update();
+		chart2.data.labels = filteredLabels;
+		chart2.data.datasets = datasets2;
+		chart2.update();
 		
-		initializeChart('chartCanvas3', datasets,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[1].yAxisLabel);
+		initializeChart('chartCanvas3', datasets,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 
 	} 
