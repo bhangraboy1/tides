@@ -416,6 +416,32 @@
 	}
     </script>
     <script>
+	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+                    initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
+		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
+		    regionData1.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
+		    regionData1.USA.data = parsedData.data.map(row => row['USA_GDP'] / trillion);
+		    regionData1.GBR.data = parsedData.data.map(row => row['GBR_GDP'] / trillion);
+		    regionData1.JPN.data = parsedData.data.map(row => row['JPN_GDP'] / trillion);
+		    regionData1.DEU.data = parsedData.data.map(row => row['DEU_GDP'] / trillion);
+		    regionData1.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
+		    regionData1.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
+		    regionData1.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
+		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
+
+		    renderChart(['IND', 'CHN']); // Default Countries to be shown
+
+		    console.log('Parsed Dates:', initialLabels);
+		}
+	    });
+	});
     	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas3',
@@ -423,13 +449,6 @@
         		labels: initialLabels, 
        			title: 'Nominal GDP (USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)'
-    		},
-   		{
-        		canvasId: 'chartCanvas4',
-        		data: regionData2, 
-        		labels: initialLabels2, 
-        		title: 'GDP Per Capita (USD)', 
-        		yAxisLabel: 'USD'
     		}
    	// Add more configurations here as needed
 	];
