@@ -415,8 +415,27 @@
    	 	});
 	}
     <script>
-    
-      
+    	let chartConfigs = [
+    		{
+        		canvasId: 'chartCanvas3',
+        		data: regionData1, 
+        		labels: initialLabels, 
+       			title: 'Nominal GDP (USD, trillions)', 
+        		yAxisLabel: 'Nominal GDP (USD, trillions)'
+    		},
+   		{
+        		canvasId: 'chartCanvas4',
+        		data: regionData2, 
+        		labels: initialLabels2, 
+        		title: 'GDP Per Capita (USD)', 
+        		yAxisLabel: 'USD'
+    		}
+   	// Add more configurations here as needed
+	];
+
+	chartConfigs.forEach(config => {
+    		initializeChart(config.canvasId, config.data, config.labels, config.title, config.yAxisLabel);
+	});
     </script>
   
 
