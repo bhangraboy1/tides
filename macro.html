@@ -143,6 +143,8 @@
 		chart2.data.labels = filteredLabels;
 		chart2.data.datasets = datasets2;
 		chart2.update();
+		initializeChart('chartCanvas4', datasets, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+
 	} 
     </script>
 	
@@ -366,6 +368,8 @@
     </script>
 	
     // This is the new streamlined script that should show all the graphs
+    //
+    //
     <script>
 	let charts = {}; // Store Charts Globally
 	    
