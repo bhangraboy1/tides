@@ -41,6 +41,8 @@
     <label><input type="checkbox" name="region" value="CHN">China</label>
     <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
     <label><input type="checkbox" name="region" value="TOP5">Top 5</label>
+    <label><input type="checkbox" name="region" value="SIM">Similar Income</label>
+    <label><input type="checkbox" name="region" value="BRK">Breakout</label>
     <button onclick="updateChart()">Update Chart</button>	  
   </div>
 </div>
@@ -102,7 +104,14 @@
 			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
 			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
 		}
-		
+		if (selectedRegions.includes('SIM')) {
+			selectedRegions.push('BGD');
+			selectedRegions.splice(selectedRegions.indexOf('SIM'), 1);
+		}
+		if (selectedRegions.includes('BRK')) {
+			selectedRegions.push('KOR');
+			selectedRegions.splice(selectedRegions.indexOf('BRK'), 1);
+		}
 		// Filter by Start Date
 		const minDate = new Date(document.getElementById('minDate').value);
 		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
@@ -169,7 +178,9 @@
 		    regionData.DEU.data = parsedData.data.map(row => row['DEU_GDP'] / trillion);
 		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
 		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
-			
+		    regionData.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
+		    regionData.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
+
 		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
 		    console.log('Parsed Dates:', initialLabels);
@@ -257,7 +268,9 @@
 		JPN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
 		DEU: { data: [], color: 'rgba(150, 150,   0,  1)', borderwidth: 1, pointradius: 1 },
 		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
-		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 }
+		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
+		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
+		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
@@ -277,7 +290,8 @@
 		    regionData2.DEU.data = parsedData.data.map(row => row['DEU_GDPP']);
 		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP']);
 		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP']);
-
+		    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP']);
+		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP']);
 		    renderChart2(['IND', 'CHN']); // Default Countries to be shown
 		}
 	     });
