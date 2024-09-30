@@ -478,7 +478,7 @@
 
 	chartConfigs.forEach(config => {
 		const datasets = convertToDatasets(config.data); //convert regionData to a datasets array
-    		initializeChart(config.canvasId, config.data, config.labels, config.title, config.yAxisLabel);
+    		initializeChart(config.canvasId, datasets, config.labels, config.title, config.yAxisLabel);
 	});
     </script>
   
