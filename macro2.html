@@ -132,8 +132,8 @@
 			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
 			borderColor: regionData1[region].color,
 			backgroundColor: regionData[region].color,
-			borderWidth: regionData[region].borderwidth,
-			pointRadius: regionData[region].pointradius
+			borderWidth: regionData1[region].borderwidth,
+			pointRadius: regionData1[region].pointradius
 	
 		}));
 		const datasets2 = [...new Set(selectedRegions)].map(region => ({
