@@ -474,7 +474,7 @@
 		    regionData1.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
 		    regionData1.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
 		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
-		    chartConfigs[0].labels = initialLabels;
+//		    chartConfigs[0].labels = initialLabels;
 			
 		    
 		    const datasets = convertToDatasets(regionData1); //convert regionData to a datasets array
@@ -506,7 +506,7 @@
 		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP'] );
 		    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP'] );
 		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP'] );
-		    chartConfigs[0].labels = initialLabels;
+//		    chartConfigs[0].labels = initialLabels;
 			
 		    const datasets2 = convertToDatasets(regionData2); //convert regionData to a datasets array
     		    initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
