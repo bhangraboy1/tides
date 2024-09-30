@@ -129,7 +129,7 @@
 		// Filter dataset based on Selected Regions
 		const datasets = [...new Set(selectedRegions)].map(region => ({
 			label: region,
-			data: regionData[region].data.filter((value, idx) => new Date(initialLabels[idx]) >= minDate),
+			data: regionData[region].data.filter((value, idx) => new Date(chartConfigs[0].labels[idx]) >= minDate),
 			borderColor: regionData1[region].color,
 			backgroundColor: regionData1[region].color,
 			borderWidth: regionData1[region].borderwidth,
@@ -297,7 +297,7 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function(parsedData) {
-                   initialLabels2  = parsedData.data.map(row => new Date(row['Date']));
+                    initialLabels2  = parsedData.data.map(row => new Date(row['Date']));
 		    regionData2.IND.data = parsedData.data.map(row => row['IND_GDPP']);
 		    regionData2.CHN.data = parsedData.data.map(row => row['CHN_GDPP']);
 		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP']);
@@ -307,7 +307,7 @@
 		    regionData2.DEU.data = parsedData.data.map(row => row['DEU_GDPP']);
 		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP'])
 	    	    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP']);
-	    	regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP']);
+	    	    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP']);
 		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP']);
 		    renderChart2(['IND', 'CHN']); // Default Countries to be shown
 		}
@@ -465,6 +465,7 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     chartConfigs[0].labels  = parsedData.data.map(row => new Date(row['Date']));
+		    
 		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 		    regionData1.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
