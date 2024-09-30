@@ -174,7 +174,7 @@
 		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
 		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
 		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
-//		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
+		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
@@ -195,7 +195,7 @@
 		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
 		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
 		    regionData.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
-//		    regionData.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
+		    regionData.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
 
 //		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
@@ -295,7 +295,7 @@
 		RUS: { data: [], color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
 		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
 		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
-		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
+//		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
         // Fetch and parse CSV
         fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
@@ -316,8 +316,8 @@
 		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP'])
 	    	    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP']);
 	    	    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP']);
-		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP']);
-		    renderChart2(['IND', 'CHN']); // Default Countries to be shown
+//		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP']);
+//		    renderChart2(['IND', 'CHN']); // Default Countries to be shown
 		}
 	     });
 	});
