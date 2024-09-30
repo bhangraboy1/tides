@@ -371,7 +371,7 @@
 		if (charts[canvasId]) {
 			charts[canvasId].destroy();
 		}
-   		chart[canvasId] = new Chart(ctx, {
+   		charts[canvasId] = new Chart(ctx, {
 		  	type: 'line',
        			data: {
             			labels: labels,
@@ -420,6 +420,7 @@
    	 	});
 	}
     </script>
+	
     <script>
 	let regionData1 = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
