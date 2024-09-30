@@ -363,7 +363,61 @@
         }
 
     </script>
-
+    <script>
+	function initializeChart(canvasId, data, labels, title, yAxisLabel) {
+    		const ctx = document.getElementById(canvasId).getContext('2d');
+   		return new Chart(ctx, {
+        	type: 'line',
+       		data: {
+            		labels: labels,
+            		datasets: data
+        	},
+        	options: {
+            		plugins: {
+               			title: {
+                			display: true,
+                   			text: title,
+                    			font: {
+                        			size: 18
+                    			}
+                		},
+                		subtitle: {
+                    			display: true,
+                    			text: 'Graph Subtitle',
+                    			font: {
+                        			size: 14
+                    			}
+                		}
+            		},
+            		scales: {
+                		x: {
+                    		type: 'time',
+                    		time: {
+                        		unit: 'year',
+                        		stepSize: 2,
+                        		displayFormats: {
+                            			year: 'yyyy'
+                       			}
+                    		},
+                    		title: {
+                        		display: true,
+                        		text: 'Year'
+                    		}
+                	},
+                		y: {
+	                		title: {
+                        			display: true,
+                        			text: yAxisLabel
+                    			}
+                		}
+            		}
+        	}
+   	 	});
+	}
+    <script>
+    
+      
+    </script>
   
 
        
