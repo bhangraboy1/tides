@@ -143,7 +143,9 @@
 		chart2.data.labels = filteredLabels;
 		chart2.data.datasets = datasets2;
 		chart2.update();
-		initializeChart('chartCanvas4', datasets, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+		
+		initializeChart('chartCanvas3', datasets,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[1].yAxisLabel);
+		initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 
 	} 
     </script>
