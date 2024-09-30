@@ -439,6 +439,23 @@
     </script>
 	
     <script>
+	let chartConfigs = [
+    		{
+        		canvasId: 'chartCanvas3',
+        		data: regionData1, 
+        		labels: chartConfigs[0].labels, 
+       			title: 'Nominal GDP (USD, trillions)', 
+        		yAxisLabel: 'Nominal GDP (USD, trillions)'
+    		},
+		{
+        		canvasId: 'chartCanvas4',
+        		data: regionData2, 
+        		labels: chartConfigs[1].labels, 
+       			title: 'GDP (Nominal) Per Capita (USD)', 
+        		yAxisLabel: 'USD'
+    		}
+	];
+	    
 	let regionData1 = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
@@ -527,23 +544,9 @@
     		}));
 	}
 	    
-    	let chartConfigs = [
-    		{
-        		canvasId: 'chartCanvas3',
-        		data: regionData1, 
-        		labels: chartConfigs[0].labels, 
-       			title: 'Nominal GDP (USD, trillions)', 
-        		yAxisLabel: 'Nominal GDP (USD, trillions)'
-    		},
-		{
-        		canvasId: 'chartCanvas4',
-        		data: regionData2, 
-        		labels: chartConfigs[1].labels, 
-       			title: 'GDP (Nominal) Per Capita (USD)', 
-        		yAxisLabel: 'USD'
-    		}
+
    	// Add more configurations here as needed
-	];
+	
     </script>
   
 
