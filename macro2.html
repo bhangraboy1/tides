@@ -145,9 +145,9 @@
 			pointRadius: regionData2[region].pointradius
 	
 		}));
-		chart.data.labels = filteredLabels;
-		chart.data.datasets = datasets;
-		chart.update();
+		charts['chartCanvas3'].data.labels = filteredLabels;
+		charts['chartCanvas3'].data.datasets = datasets;
+		charts['chartCanvas3'].update();
 		
 		chart2.data.labels = filteredLabels;
 		chart2.data.datasets = datasets2;
