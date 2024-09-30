@@ -185,7 +185,7 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] );
+		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
 		    regionData.USA.data = parsedData.data.map(row => row['USA_GDP'] / trillion);
