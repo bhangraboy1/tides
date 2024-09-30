@@ -138,7 +138,7 @@
 		}));
 		const datasets2 = [...new Set(selectedRegions)].map(region => ({
 			label: region,
-			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels2[idx]) >= minDate),
+			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
 			borderColor: regionData2[region].color,
 			backgroundColor: regionData2[region].color,
 			borderWidth: regionData2[region].borderwidth,
@@ -497,6 +497,7 @@
                 dynamicTyping: true,
                 complete: function(parsedData) {
                     chartConfigs[1].labels  = parsedData.data.map(row => new Date(row['Date']));
+		    initialLabels22 = chartConfigs[1].labels;
 		    regionData2.IND.data = parsedData.data.map(row => row['IND_GDPP'] );
 		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP'] );
 		    regionData2.CHN.data = parsedData.data.map(row => row['CHN_GDPP'] );
