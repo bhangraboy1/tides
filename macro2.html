@@ -108,7 +108,7 @@
         let initialLabels = [];
 	let trillion = 1000000000000
 	let chart;
-//	let regionData = {
+	let regionData = {
 //		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 //		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
 //		BRA: { data: [], color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
@@ -120,16 +120,16 @@
 //		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
 //		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
 //		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
-//	}
+	}
         // Fetch and parse CSV
-//        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
-//        .then(response => response.text())
-//        .then(csvData => {
-//            Papa.parse(csvData, {
-//               header: true,
-//                dynamicTyping: true,
-//                complete: function(parsedData) {
-//                  initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
+        .then(response => response.text())
+        .then(csvData => {
+            Papa.parse(csvData, {
+		header: true,
+                dynamicTyping: true,
+                complete: function(parsedData) {
+			initialLabels  = parsedData.data.map(row => new Date(row['Date']));
 //		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 //		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 //		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
@@ -145,9 +145,9 @@
 //		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
 //		    console.log('Parsed Dates:', initialLabels);
-//		}
-//	    });
-//	});
+		}
+	    });
+	});
 
     </script>
     Source: 
