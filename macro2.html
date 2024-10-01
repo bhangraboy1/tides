@@ -106,17 +106,17 @@
 	let regionData = {
 	}
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            Papa.parse(csvData, {
-		header: true,
-                dynamicTyping: true,
-                complete: function(parsedData) {
-			initialLabels  = parsedData.data.map(row => new Date(row['Date']));
-		}
-	    });
-	});
+//        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
+//        .then(response => response.text())
+//        .then(csvData => {
+//            Papa.parse(csvData, {
+//		header: true,
+//                dynamicTyping: true,
+//                complete: function(parsedData) {
+//			initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+//		}
+//	    });
+//	});
     </script>
     Source: 
 
