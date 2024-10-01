@@ -122,14 +122,14 @@
 //		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 //	}
         // Fetch and parse CSV
-        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            Papa.parse(csvData, {
-               header: true,
-                dynamicTyping: true,
-                complete: function(parsedData) {
-                  initialLabels  = parsedData.data.map(row => new Date(row['Date']));
+//        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
+//        .then(response => response.text())
+//        .then(csvData => {
+//            Papa.parse(csvData, {
+//               header: true,
+//                dynamicTyping: true,
+//                complete: function(parsedData) {
+//                  initialLabels  = parsedData.data.map(row => new Date(row['Date']));
 //		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 //		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 //		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
@@ -144,10 +144,10 @@
 
 //		    renderChart(['IND', 'CHN']); // Default Countries to be shown
 
-		    console.log('Parsed Dates:', initialLabels);
-		}
-	    });
-	});
+//		    console.log('Parsed Dates:', initialLabels);
+//		}
+//	    });
+//	});
 
     </script>
     Source: 
