@@ -309,7 +309,7 @@
 		    chartConfigs[0].labels = initialLabels;
 			
 		    
-		    const datasets = convertToDatasets(regionData1); //convert regionData to a datasets array
+		    const datasets = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas3', datasets, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', initialLabels);
@@ -359,7 +359,7 @@
         		fill: false
     		}));
 	}
-	    
+// This is all of the data that drives all of the charts	    
     	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas3',
