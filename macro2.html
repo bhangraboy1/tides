@@ -102,62 +102,7 @@
       <canvas id="chartCanvas10" width="100" height="60"></canvas>
     </div>
 	
-    <script>
-        function updateChart() {
-		// Get Selected Regions
-		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
-		if (selectedRegions.includes('BRICS')) {
-			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
-			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
-		}
-		if (selectedRegions.includes('TOP5')) {
-			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
-			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
-		}
-		if (selectedRegions.includes('SIM')) {
-			selectedRegions.push('BGD');
-			selectedRegions.splice(selectedRegions.indexOf('SIM'), 1);
-		}
-		if (selectedRegions.includes('BRK')) {
-			selectedRegions.push('KOR');
-			selectedRegions.splice(selectedRegions.indexOf('BRK'), 1);
-		}
-		// Filter by Start Date
-		const minDate = new Date(document.getElementById('minDate').value);
-		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
-		
-		// Filter dataset based on Selected Regions
-		const datasets = [...new Set(selectedRegions)].map(region => ({
-			label: region,
-			data: regionData1[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
-			borderColor: regionData1[region].color,
-			backgroundColor: regionData1[region].color,
-			borderWidth: regionData1[region].borderwidth,
-			pointRadius: regionData1[region].pointradius
-	
-		}));
-		const datasets2 = [...new Set(selectedRegions)].map(region => ({
-			label: region,
-			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
-			borderColor: regionData2[region].color,
-			backgroundColor: regionData2[region].color,
-			borderWidth: regionData2[region].borderwidth,
-			pointRadius: regionData2[region].pointradius
-	
-		}));
-		charts['chartCanvas3'].data.labels = filteredLabels;
-//		charts['chartCanvas3'].data.datasets = datasets;
-		charts['chartCanvas3'].update();
-		
-		charts['chartCanvas4'].data.labels = filteredLabels;
-//		charts['chartCanvas4'].data.datasets = datasets2;
-		charts['chartCanvas4'].update();
-		
-		initializeChart('chartCanvas3', datasets,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
-		initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 
-	} 
-    </script>
 	
     <script>
         let initialLabels = [];
@@ -378,7 +323,62 @@
    	// Add more configurations here as needed
 	];
     </script>
-  
+     <script>
+        function updateChart() {
+		// Get Selected Regions
+		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
+		if (selectedRegions.includes('BRICS')) {
+			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
+			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
+		}
+		if (selectedRegions.includes('TOP5')) {
+			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
+			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
+		}
+		if (selectedRegions.includes('SIM')) {
+			selectedRegions.push('BGD');
+			selectedRegions.splice(selectedRegions.indexOf('SIM'), 1);
+		}
+		if (selectedRegions.includes('BRK')) {
+			selectedRegions.push('KOR');
+			selectedRegions.splice(selectedRegions.indexOf('BRK'), 1);
+		}
+		// Filter by Start Date
+		const minDate = new Date(document.getElementById('minDate').value);
+		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
+		
+		// Filter dataset based on Selected Regions
+		const datasets = [...new Set(selectedRegions)].map(region => ({
+			label: region,
+			data: regionData1[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
+			borderColor: regionData1[region].color,
+			backgroundColor: regionData1[region].color,
+			borderWidth: regionData1[region].borderwidth,
+			pointRadius: regionData1[region].pointradius
+	
+		}));
+		const datasets2 = [...new Set(selectedRegions)].map(region => ({
+			label: region,
+			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
+			borderColor: regionData2[region].color,
+			backgroundColor: regionData2[region].color,
+			borderWidth: regionData2[region].borderwidth,
+			pointRadius: regionData2[region].pointradius
+	
+		}));
+		charts['chartCanvas3'].data.labels = filteredLabels;
+//		charts['chartCanvas3'].data.datasets = datasets;
+		charts['chartCanvas3'].update();
+		
+		charts['chartCanvas4'].data.labels = filteredLabels;
+//		charts['chartCanvas4'].data.datasets = datasets2;
+		charts['chartCanvas4'].update();
+		
+		initializeChart('chartCanvas3', datasets,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
+		initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+
+	} 
+    </script> 
 
        
 
