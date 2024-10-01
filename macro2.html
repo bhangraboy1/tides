@@ -203,14 +203,7 @@
 		}
 	    });
 	});
-	const datasets = selectedRegions.map(region => ({
-			label: region,
-			data: regionData[region].data,
-			borderColor: regionData[region].color,
-			backgroundColor: regionData[region].color,
-			borderWidth: regionData[region].borderwidth,
-			pointRadius: regionData[region].pointRadius
-	}));
+
 	    
 	function renderChart(selectedRegions) {
                 // Render chart
@@ -296,7 +289,7 @@
 //		ZAF: { data: [], color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
 //		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
 //		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
-	}
+//	}
         // Fetch and parse CSV
 //        fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
 //        .then(response => response.text())
