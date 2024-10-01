@@ -81,8 +81,6 @@
       </div>
     </div>
 	
-
-
     <div class="chart-container">
       <canvas id="chartCanvas5" width="100" height="60"></canvas>
     </div>
@@ -101,12 +99,9 @@
     <div class="chart-container">
       <canvas id="chartCanvas10" width="100" height="60"></canvas>
     </div>
-	
 
-	
     <script>
         let initialLabels = [];
-	let trillion = 1000000000000
 	let chart;
 	let regionData = {
 	}
@@ -122,11 +117,11 @@
 		}
 	    });
 	});
-
     </script>
     Source: 
 
 // This is the new streamlined script that should show all the graphs
+//
 //
 //
     <script>
@@ -190,6 +185,8 @@
     </script>
 	
     <script>
+	let trillion = 1000000000000
+
 	let regionData1 = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
@@ -239,7 +236,7 @@
 		    regionData1.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
 		    regionData1.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
 		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
-		    chartConfigs[0].labels = initialLabels;
+//		    chartConfigs[0].labels = initialLabels;
 			
 		    
 		    const datasets = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
@@ -272,7 +269,7 @@
 		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP'] );
 		    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP'] );
 		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP'] );
-		    chartConfigs[1].labels = initialLabels;
+//		    chartConfigs[1].labels = initialLabels;
 			
 		    const datasets2 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
