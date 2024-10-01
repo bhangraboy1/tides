@@ -351,8 +351,7 @@
 		// Filter dataset based on Selected Regions
 		const datasets = [...new Set(selectedRegions)].map(region => ({
 			label: region,
-//			data: regionData1[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
-			data: chartsConfigs[0].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
+			data: regionData1[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
 			borderColor: regionData1[region].color,
 			backgroundColor: regionData1[region].color,
 			borderWidth: regionData1[region].borderwidth,
@@ -361,8 +360,7 @@
 		}));
 		const datasets2 = [...new Set(selectedRegions)].map(region => ({
 			label: region,
-//			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
-			data: chartsConfigs[1].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
+			data: regionData2[region].data.filter((value, idx) => new Date(initialLabels22[idx]) >= minDate),
 			borderColor: regionData2[region].color,
 			backgroundColor: regionData2[region].color,
 			borderWidth: regionData2[region].borderwidth,
