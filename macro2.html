@@ -130,10 +130,10 @@
 		const datasets = [...new Set(selectedRegions)].map(region => ({
 			label: region,
 			data: regionData[region].data.filter((value, idx) => new Date(initialLabels11[idx]) >= minDate),
-			borderColor: regionData1[region].color,
-			backgroundColor: regionData1[region].color,
-			borderWidth: regionData1[region].borderwidth,
-			pointRadius: regionData1[region].pointradius
+			borderColor: regionData[region].color,
+			backgroundColor: regionData[region].color,
+			borderWidth: regionData[region].borderwidth,
+			pointRadius: regionData[region].pointradius
 	
 		}));
 		const datasets2 = [...new Set(selectedRegions)].map(region => ({
@@ -269,7 +269,7 @@
     </script>
 	
     <script>
-	let regionData1 = {
+	let regionData = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
 		BRA: { data: [], color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
@@ -282,7 +282,7 @@
 		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
 		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
-	regionData2 = regionData1
+	regionData2 = regionData
 
 	// Fetch Data for GDP Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
@@ -295,21 +295,21 @@
                     chartConfigs[0].labels  = parsedData.data.map(row => new Date(row['Date']));
 		    initialLabels11 = chartConfigs[0].labels;
 
-		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
-		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
-		    regionData1.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
-		    regionData1.USA.data = parsedData.data.map(row => row['USA_GDP'] / trillion);
-		    regionData1.GBR.data = parsedData.data.map(row => row['GBR_GDP'] / trillion);
-		    regionData1.JPN.data = parsedData.data.map(row => row['JPN_GDP'] / trillion);
-		    regionData1.DEU.data = parsedData.data.map(row => row['DEU_GDP'] / trillion);
-		    regionData1.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
-		    regionData1.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
-		    regionData1.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
-		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
+		    regionData.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
+		    regionData.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
+		    regionData.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
+		    regionData.USA.data = parsedData.data.map(row => row['USA_GDP'] / trillion);
+		    regionData.GBR.data = parsedData.data.map(row => row['GBR_GDP'] / trillion);
+		    regionData.JPN.data = parsedData.data.map(row => row['JPN_GDP'] / trillion);
+		    regionData.DEU.data = parsedData.data.map(row => row['DEU_GDP'] / trillion);
+		    regionData.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
+		    regionData.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
+		    regionData.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
+		    regionData.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
 		    chartConfigs[0].labels = initialLabels;
 			
 		    
-		    const datasets = convertToDatasets(regionData1); //convert regionData to a datasets array
+		    const datasets = convertToDatasets(regionData); //convert regionData to a datasets array
     		    initializeChart('chartCanvas3', datasets, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', initialLabels);
@@ -363,7 +363,7 @@
     	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas3',
-        		data: regionData1, 
+        		data: regionData, 
         		labels: initialLabels, 
        			title: 'Nominal GDP (USD, trillions) 2', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)'
