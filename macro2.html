@@ -314,69 +314,69 @@
 //		}
 //	     });
 //	});
-	function renderChart2(selectedRegions) {
-		const datasets = selectedRegions.map(region => ({
-			label: region,
-			data: regionData2[region].data,
-			borderColor: regionData2[region].color,
-			backgroundColor: regionData2[region].color,
-			borderWidth: regionData2[region].borderwidth,
-			pointRadius: regionData2[region].pointRadius
-		}));
+//	function renderChart2(selectedRegions) {
+//		const datasets = selectedRegions.map(region => ({
+//			label: region,
+//			data: regionData2[region].data,
+//			borderColor: regionData2[region].color,
+//			backgroundColor: regionData2[region].color,
+//			borderWidth: regionData2[region].borderwidth,
+//			pointRadius: regionData2[region].pointRadius
+//		}));
 		// Render chart
 
-                const ctx = document.getElementById('chartCanvas2').getContext('2d');
-		if (chart2) {
-			chart2.destroy(); // Destroy previous Chart instance
-		}
-                chart2 = new Chart(ctx, {
-        		type: 'line',
-			data: {
-                        	labels: initialLabels2,
-                                datasets: datasets
-                        },				    
-			options: {
-				plugins: {
-					title: {
-						display: true,
-						text: 'GDP Per Capita (USD)',
-						font: {
-							size: 18
-						}
-					},
-					subtitle: {
-						display: true,
-						text: 'Graph Subtitle',
-						font: {
-							size: 14
-						}
-					}
-				},
-				scales: {
-					x: {
-						type: 'time',
-						time: {
-							unit: 'year',
-							stepSize: 2,
-							displayFormats: {
-								year: 'yyyy'
-							}
-						},
-						title: {
-							display: true,
-							text: 'Year'
-						}
-					},
-					y: {
-						title: {
-							display: true,
-							text: 'USD'
-						}
-					}
-				}
-			}
-                });
-        }
+//                const ctx = document.getElementById('chartCanvas2').getContext('2d');
+//		if (chart2) {
+//			chart2.destroy(); // Destroy previous Chart instance
+//		}
+//                chart2 = new Chart(ctx, {
+//       		type: 'line',
+//			data: {
+//                        	labels: initialLabels2,
+//                                datasets: datasets
+//                      },				    
+//			options: {
+//				plugins: {
+//					title: {
+//						display: true,
+//						text: 'GDP Per Capita (USD)',
+//						font: {
+//							size: 18
+//						}
+//					},
+//					subtitle: {
+//						display: true,
+//						text: 'Graph Subtitle',
+//						font: {
+//							size: 14
+//						}
+//					}
+//				},
+//				scales: {
+//					x: {
+//						type: 'time',
+//						time: {
+//							unit: 'year',
+//							stepSize: 2,
+//							displayFormats: {
+//								year: 'yyyy'
+//							}
+//						},
+//						title: {
+//							display: true,
+//							text: 'Year'
+//						}
+//					},
+//					y: {
+//						title: {
+//							display: true,
+//							text: 'USD'
+//						}
+//					}
+//				}
+//			}
+//              });
+//      }
 
     </script>
 	
