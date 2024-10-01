@@ -348,14 +348,14 @@
 		}
 	    });
 	});
-	function convertToDatasets(regionData) {
-		return Object.keys(regionData).map(region => ({
+	function convertToDatasets(rd) {
+		return Object.keys(rd).map(region => ({
         		label: region,
-        		data: regionData[region].data,
-        		borderColor: regionData[region].color,
-			backgroundColor: regionData[region].color,
-        		borderWidth: regionData[region].borderwidth,
-       			pointRadius: regionData[region].pointradius,
+        		data: rd[region].data,
+        		borderColor: rd[region].color,
+			backgroundColor: rd[region].color,
+        		borderWidth: rd[region].borderwidth,
+       			pointRadius: rd[region].pointradius,
         		fill: false
     		}));
 	}
