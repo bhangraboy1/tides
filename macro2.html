@@ -25,7 +25,6 @@
 <div class="intro"><P>It is very important to understand how incomes are growing within India and other countries as a whole and on a per capita basis. 
       We need to monitor consumption, investment, and labor force participation among other key macro variables as 
 	these all have important implications on livelihoods.
-  <BR>Russia Brazil China Bangladesh India Pakistan
   <BR>Nominal GDP on log scale over time
   <BR>Bar Chart of Share of World GDP over time
   <BR>PPP GDP on log scale over time
@@ -41,7 +40,7 @@
     <label><input type="checkbox" name="region" value="IND" checked>India</label>
     <label><input type="checkbox" name="region" value="CHN" checked>China</label>
     <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
-    <label><input type="checkbox" name="region" value="TOP5">Top 5</label>
+    <label><input type="checkbox" name="region" value="TOP6">Top 5</label>
     <label><input type="checkbox" name="region" value="SIM">Similar Income</label>
     <label><input type="checkbox" name="region" value="BRK">Breakout</label>
     <button onclick="updateChart()">Update Chart</button>	  
@@ -170,6 +169,7 @@
    	 	});
 	}
     </script>
+	
 // Scalable Function to Assign Colors to each Country
     <script>
 	function createRegionData(countries) {
@@ -295,8 +295,7 @@
    	// Add more configurations here as needed
 	];
     </script>
-	
-     <script>
+    <script>
         function updateChart() {
 		// Get Selected Regions
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
@@ -304,8 +303,8 @@
 			selectedRegions.push('BRA', 'IND', 'CHN', 'RUS', 'ZAF');
 			selectedRegions.splice(selectedRegions.indexOf('BRICS'), 1);
 		}
-		if (selectedRegions.includes('TOP5')) {
-			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND');
+		if (selectedRegions.includes('TOP6')) {
+			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND', 'GBR');
 			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
 		}
 		if (selectedRegions.includes('SIM')) {
