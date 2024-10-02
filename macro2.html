@@ -310,6 +310,13 @@
 		}
 		// Filter by Start Date
 		const minDate = new Date(document.getElementById('minDate').value);
+
+		chartConfigs.forEach(chart => {
+			const filteredLabels = chart.labels.filter(label => new Date(label) >= minDate);
+			const datasets = createDatasets(chat.regionData, chart.labels, selectedRegions, minDate);
+			initializeChart(chart.canvasId, datasets, filteredLabels, chart.config.title, chart.config.yAxisLabel);
+		});
+/*		
 		const filteredLabels0  = initialLabels0.filter(label => new Date(label) >= minDate);
 		const filteredLabels1  = initialLabels1.filter(label => new Date(label) >= minDate);
 
@@ -319,6 +326,7 @@
 
 		initializeChart('chartCanvas0', datasets0, filteredLabels0, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		initializeChart('chartCanvas1', datasets1, filteredLabels1, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+  */
 	} 
     </script> 
 
