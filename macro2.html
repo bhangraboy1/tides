@@ -235,7 +235,7 @@
 		    });
 
 		    const datasets1 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
-    		    initializeChart('chartCanvas1', datasets1, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
+    		    initializeChart(chartConfigs[1].canvasId, datasets1, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', initialLabels);
 		}
@@ -309,7 +309,7 @@
 		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
 		
 		// SCALE: Filter dataset based on Selected Regions
-		const datasets0  = createDatasets(regionData0, initialLabels0, selectedRegions, minDate);
+		const datasets0 = createDatasets(regionData0, initialLabels0, selectedRegions, minDate);
 		const datasets1 = createDatasets(regionData1, initialLabels1, selectedRegions, minDate);
 
 		initializeChart('chartCanvas0', datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
