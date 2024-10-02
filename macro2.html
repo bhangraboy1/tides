@@ -224,10 +224,24 @@
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD'];
 	let regionData1 = createRegionData(countries);
 	let regionData2 = createRegionData(countries); 
-	let chartConfigs = [];
 	let initialLabels11 = [];
 	let initialLabels22 = [];
-	    
+
+    	let chartConfigs = [
+    		{
+        		canvasId: 'chartCanvas3',
+        		data: regionData1, 
+        		labels: 'xx', 
+       			title: 'Nominal GDP (Current USD, trillions)', 
+        		yAxisLabel: 'Nominal GDP (USD, trillions)'
+    		},
+		{
+        		canvasId: 'chartCanvas4',
+        		data: regionData2, 
+        		labels: 'xx, 
+       			title: 'GDP (Nominal) Per Capita (USD)', 
+        		yAxisLabel: 'USD'
+    		}
 // Fetching data for GDP Graph
 	fetchAndParseData(
 		'https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', 
