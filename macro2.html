@@ -208,10 +208,10 @@
 		    initialLabels1 = chartConfigs[0].labels;
 
 		    countries.forEach(country => {
-			    regionData1[country].data = parsedData.data.map(row => row[`${country}_GDP`] / trillion);
+			    regionData0[country].data = parsedData.data.map(row => row[`${country}_GDP`] / trillion);
 		    });
 
-		    const datasets = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
+		    const datasets0 = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas0', datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', chartConfigs[0].labels);
@@ -231,10 +231,10 @@
 		    initialLabels2 = chartConfigs[1].labels;
 
 		    countries.forEach(country => {
-			    regionData2[country].data = parsedData.data.map(row => row[`${country}_GDPP`] );
+			    regionData1[country].data = parsedData.data.map(row => row[`${country}_GDPP`] );
 		    });
 
-		    const datasets2 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
+		    const datasets1 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas1', datasets1, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', initialLabels);
