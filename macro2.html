@@ -207,7 +207,10 @@
                     chartConfigs[0].labels  = parsedData.data.map(row => new Date(row['Date']));
 		    initialLabels11 = chartConfigs[0].labels;
 
-		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
+		    countries.forEach(country => {
+			    regionData1[country].data = parsedData.data.map(row => row[`${country}`] / trilliion);
+		    });
+/*		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
 		    regionData1.BRA.data = parsedData.data.map(row => row['BRA_GDP'] / trillion);
 		    regionData1.USA.data = parsedData.data.map(row => row['USA_GDP'] / trillion);
@@ -217,7 +220,7 @@
 		    regionData1.RUS.data = parsedData.data.map(row => row['RUS_GDP'] / trillion);
 		    regionData1.ZAF.data = parsedData.data.map(row => row['ZAF_GDP'] / trillion);
 		    regionData1.KOR.data = parsedData.data.map(row => row['KOR_GDP'] / trillion);
-		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion);
+		    regionData1.BGD.data = parsedData.data.map(row => row['BGD_GDP'] / trillion); */
 			
 		    const datasets = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas3', datasets, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
