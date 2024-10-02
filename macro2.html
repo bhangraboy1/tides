@@ -208,7 +208,7 @@
                     			Object.keys(regionData).forEach(region => {
                         		regionData[region].data = parsedData.data.map(row => row[`${region}_GDP`] / divisor);
                     			});
-		    			console.log('Data:', region, regionData.IND.data);
+		    			console.log('Data:', region, regionData[IND].data);
 
                     			const datasets = convertToDatasets(regionData); 
                    			initializeChart(canvasId, datasets, chartConfig.labels, title, yAxisLabel);
