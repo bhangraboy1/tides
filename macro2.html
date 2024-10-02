@@ -192,16 +192,64 @@
         	return acc;
     	}, {});
 	}
+	    
+	function fetchAndParseData(url, regionData, chartConfig, initialLabels, title, yAxisLabel, canvasId, divisor = 1) {
+    		fetch(url)
+     			.then(response => response.text())
+			.then(csvData => {
+            		  Papa.parse(csvData, {
+                		header: true,
+                		dynamicTyping: true,
+                		complete: function(parsedData) {
+                    			chartConfig.labels = parsedData.data.map(row => new Date(row['Date']));
+                    			initialLabels = chartConfig.labels;
+                    
+                    // Loop through region keys to fill data dynamically
+                    			Object.keys(regionData).forEach(region => {
+                        		regionData[region].data = parsedData.data.map(row => row[`${region}_GDP`] / divisor);
+                    			});
+
+                    			const datasets = convertToDatasets(regionData); 
+                   			initializeChart(canvasId, datasets, chartConfig.labels, title, yAxisLabel);
+                		}
+          		  });
+			});
+	}
     </script>
 
     <script>
 	let trillion = 1000000000000
         let initialLabels = [];
-// Defining Colors, Border Width, and Marker Size for each dataset
+// SCALE: Defining Colors, Border Width, and Marker Size for each dataset
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD'];
 	let regionData1 = createRegionData(countries);
 	let regionData2 = createRegionData(countries); 
-	    
+
+// Fetching data for GDP Graph
+	fetchAndParseData(
+		'https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', 
+    		regionData1, 
+    		chartConfigs[0], 
+    		initialLabels11, 
+    		'GDP Over Time', 
+    		'GDP (trillions)', 
+   		'chartCanvas3', 
+    		trillion
+	);
+
+// Fetching data for GDP Per Capita Graph
+	fetchAndParseData(
+    		'https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', 
+    		regionData2, 
+    		chartConfigs[1], 
+    		initialLabels22, 
+    		'GDP Per Capita Over Time', 
+    		'GDP Per Capita', 
+    		'chartCanvas4'
+	);
+
+/*
+
 // Fetching Data for GDP Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
@@ -232,7 +280,7 @@
 		}
 	    });
 	});
-
+ 
 // Fetch Data for GDP Per Capita Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
         .then(response => response.text())
@@ -264,6 +312,7 @@
 		}
 	    });
 	});
+ */
 	function convertToDatasets(rd) {
 		return Object.keys(rd).map(region => ({
         		label: region,
@@ -276,7 +325,7 @@
     		}));
 	}
 	    
-// This is all of the data that drives all of the charts	    
+// SCALE: This is all of the data that drives all of the charts	    
     	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas3',
@@ -330,7 +379,7 @@
 		const minDate = new Date(document.getElementById('minDate').value);
 		const filteredLabels  = initialLabels.filter(label => new Date(label) >= minDate);
 		
-		// Filter dataset based on Selected Regions
+		// SCALE: Filter dataset based on Selected Regions
 		const datasets  = createDatasets(regionData1, initialLabels11, selectedRegions, minDate);
 		const datasets2 = createDatasets(regionData2, initialLabels22, selectedRegions, minDate);
 
