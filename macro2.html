@@ -233,19 +233,7 @@
 		    countries.forEach(country => {
 			    regionData2[country].data = parsedData.data.map(row => row[`${country}_GDPP`] );
 		    });
-/*		    regionData2.IND.data = parsedData.data.map(row => row['IND_GDPP'] );
-		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP'] );
-		    regionData2.CHN.data = parsedData.data.map(row => row['CHN_GDPP'] );
-		    regionData2.BRA.data = parsedData.data.map(row => row['BRA_GDPP'] );
-		    regionData2.USA.data = parsedData.data.map(row => row['USA_GDPP'] );
-		    regionData2.GBR.data = parsedData.data.map(row => row['GBR_GDPP'] );
-		    regionData2.JPN.data = parsedData.data.map(row => row['JPN_GDPP'] );
-		    regionData2.DEU.data = parsedData.data.map(row => row['DEU_GDPP'] );
-		    regionData2.RUS.data = parsedData.data.map(row => row['RUS_GDPP'] );
-		    regionData2.ZAF.data = parsedData.data.map(row => row['ZAF_GDPP'] );
-		    regionData2.KOR.data = parsedData.data.map(row => row['KOR_GDPP'] );
-		    regionData2.BGD.data = parsedData.data.map(row => row['BGD_GDPP'] ); */
-			
+
 		    const datasets2 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
     		    initializeChart('chartCanvas4', datasets2, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 		    
