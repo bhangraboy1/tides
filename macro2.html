@@ -192,30 +192,7 @@
         	return acc;
     	}, {});
 	}
-	    
-	function fetchAndParseData(url, regionData, chartConfig, initialLabels, title, yAxisLabel, canvasId, divisor = 1) {
-    		fetch(url)
-     			.then(response => response.text())
-			.then(csvData => {
-            		  Papa.parse(csvData, {
-                		header: true,
-                		dynamicTyping: true,
-                		complete: function(parsedData) {
-                    			chartConfig.labels = parsedData.data.map(row => new Date(row['Date']));
-                    			initialLabels = chartConfig.labels;
-                    
-                    // Loop through region keys to fill data dynamically
-                    			Object.keys(regionData).forEach(region => {
-                        		regionData[region].data = parsedData.data.map(row => row[`${region}_GDP`] / divisor);
-                    			});
-		    			console.log('Data:', region, regionData[IND].data);
 
-                    			const datasets = convertToDatasets(regionData); 
-                   			initializeChart(canvasId, datasets, chartConfig.labels, title, yAxisLabel);
-                		}
-          		  });
-			});
-	}
     </script>
 
     <script>
@@ -225,49 +202,6 @@
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD'];
 	let regionData1 = createRegionData(countries);
 	let regionData2 = createRegionData(countries); 
-	let initialLabels11 = [];
-	let initialLabels22 = [];
-
-    	let chartConfigs = [
-    		{
-        		canvasId: 'chartCanvas3',
-        		data: regionData1, 
-        		labels: 'xx', 
-       			title: 'Nominal GDP (Current USD, trillions)', 
-        		yAxisLabel: 'Nominal GDP (USD, trillions)'
-    		},
-		{
-        		canvasId: 'chartCanvas4',
-        		data: regionData2, 
-        		labels: 'xx', 
-       			title: 'GDP (Nominal) Per Capita (USD)', 
-        		yAxisLabel: 'USD'
-    		}
-	];
-// Fetching data for GDP Graph
-	fetchAndParseData(
-		'https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', 
-    		regionData1, 
-    		chartConfigs[0], 
-    		initialLabels11, 
-    		'GDP Over Time', 
-    		'GDP (trillions)', 
-   		'chartCanvas3', 
-    		trillion
-	);
-
-// Fetching data for GDP Per Capita Graph
-	fetchAndParseData(
-    		'https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', 
-    		regionData2, 
-    		chartConfigs[1], 
-    		initialLabels22, 
-    		'GDP Per Capita Over Time', 
-    		'GDP Per Capita', 
-    		'chartCanvas4'
-	);
-
-/*
 
 // Fetching Data for GDP Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
@@ -331,7 +265,7 @@
 		}
 	    });
 	});
- */
+	    
 	function convertToDatasets(rd) {
 		return Object.keys(rd).map(region => ({
         		label: region,
@@ -345,7 +279,7 @@
 	}
 	    
 // SCALE: This is all of the data that drives all of the charts	    
-    	chartConfigs = [
+    	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas3',
         		data: regionData1, 
