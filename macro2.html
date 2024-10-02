@@ -170,11 +170,41 @@
    	 	});
 	}
     </script>
+    <script>
+	function createRegionData(countries) {
+		let dataTemplate = {
+      		IND: { color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
+		CHN: { color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		BRA: { color: 'rgba(253, 220,   2,  1)', borderwidth: 1, pointradius: 1 },
+		USA: { color: 'rgba(  0,   0, 128,  1)', borderwidth: 1, pointradius: 1 },
+		GBR: { color: 'rgba( 31,  81, 255,  1)', borderwidth: 1, pointradius: 1 },
+		JPN: { color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
+		DEU: { color: 'rgba(150, 150,   0,  1)', borderwidth: 1, pointradius: 1 },
+		RUS: { color: 'rgba( 76,  92,  80,  1)', borderwidth: 1, pointradius: 1 },
+		ZAF: { color: 'rgba(50,   50,  50,  1)', borderwidth: 1, pointradius: 1 },
+		KOR: { color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
+		BGD: { color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
+    	};
+		
+	return countries.reduce((acc, country) => {
+        	acc[country] = { data: [], ...dataTemplate[country] };
+        	return acc;
+    	}, {});
+	}
+    </script>
+
+
+
+ 
 	
     <script>
 	let trillion = 1000000000000
         let initialLabels = [];
 // Defining Colors, Border Width, and Marker Size for each dataset
+	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD'];
+	let regionData1 = createRegionData(countries);
+	let regionData2 = createRegionData(countries); 
+/*	    
 	let regionData1 = {
 		IND: { data: [], color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
 		CHN: { data: [], color: 'rgba(255,   0,   0,  1)', borderwidth: 1, pointradius: 1 },
@@ -201,7 +231,8 @@
 		KOR: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 },
 		BGD: { data: [], color: 'rgba(128, 128, 128,  1)', borderwidth: 1, pointradius: 1 }
 	}
-
+*/
+	    
 // Fetching Data for GDP Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
