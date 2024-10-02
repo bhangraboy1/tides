@@ -212,7 +212,7 @@
 		    });
 
 		    const datasets0 = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
-    		    initializeChart('chartCanvas0', datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
+    		    initializeChart(chartConfigs[0].canvasId, datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		    
 		    console.log('Parsed Dates:', chartConfigs[0].labels);
 		}
@@ -257,14 +257,14 @@
 // SCALE: This is all of the data that drives all of the charts	    
     	let chartConfigs = [
     		{
-        		canvasId: 'chartCanvas1',
+        		canvasId: 'chartCanvas0',
         		data: regionData0, 
         		labels: initialLabels, 
        			title: 'Nominal GDP (Current USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)'
     		},
 		{
-        		canvasId: 'chartCanvas2',
+        		canvasId: 'chartCanvas1',
         		data: regionData1, 
         		labels: initialLabels, 
        			title: 'GDP (Nominal) Per Capita (USD)', 
@@ -312,7 +312,7 @@
 		const datasets0  = createDatasets(regionData0, initialLabels0, selectedRegions, minDate);
 		const datasets1 = createDatasets(regionData1, initialLabels1, selectedRegions, minDate);
 
-		initializeChart('chartCanvas0', datasets0,  chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
+		initializeChart('chartCanvas0', datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
 		initializeChart('chartCanvas1', datasets1, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
 	} 
     </script> 
