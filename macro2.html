@@ -314,7 +314,7 @@
 		chartConfigs.forEach(chart => {
 			const filteredLabels = chart.labels.filter(label => new Date(label) >= minDate);
 			const datasets = createDatasets(chart.data, chart.labels, selectedRegions, minDate);
-			initializeChart(chart.canvasId, datasets, filteredLabels, chart.config.title, chart.config.yAxisLabel);
+			initializeChart(chart.canvasId, datasets, filteredLabels, chart.title, chart.yAxisLabel);
 		});
 /*		
 		const filteredLabels0  = initialLabels0.filter(label => new Date(label) >= minDate);
