@@ -208,7 +208,7 @@
 		    initialLabels11 = chartConfigs[0].labels;
 
 		    countries.forEach(country => {
-			    regionData1[country].data = parsedData.data.map(row => row[`${country}`] / trilliion);
+			    regionData1[country].data = parsedData.data.map(row => row[`${country}`] / trillion);
 		    });
 /*		    regionData1.IND.data = parsedData.data.map(row => row['IND_GDP'] / trillion);
 		    regionData1.CHN.data = parsedData.data.map(row => row['CHN_GDP'] / trillion);
