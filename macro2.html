@@ -40,7 +40,7 @@
     <label><input type="checkbox" name="region" value="IND" checked>India</label>
     <label><input type="checkbox" name="region" value="CHN" checked>China</label>
     <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
-    <label><input type="checkbox" name="region" value="TOP6">Top 5</label>
+    <label><input type="checkbox" name="region" value="TOP6">Top 6</label>
     <label><input type="checkbox" name="region" value="SIM">Similar Income</label>
     <label><input type="checkbox" name="region" value="BRK">Breakout</label>
     <button onclick="updateChart()">Update Chart</button>	  
@@ -305,7 +305,7 @@
 		}
 		if (selectedRegions.includes('TOP6')) {
 			selectedRegions.push('USA', 'CHN', 'JPN', 'DEU', 'IND', 'GBR');
-			selectedRegions.splice(selectedRegions.indexOf('TOP5'), 1);
+			selectedRegions.splice(selectedRegions.indexOf('TOP6'), 1);
 		}
 		if (selectedRegions.includes('SIM')) {
 			selectedRegions.push('BGD');
