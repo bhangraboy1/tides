@@ -235,58 +235,12 @@
     		}
    	// Add more configurations here as needed
 	];
+	    
 // Call for GDP Graph
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', regionData0, chartConfigs[0], chartConfigs[0].scale);
 
 // Call for GDP Per Capita Graph
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
-/*
-// Fetching Data for GDP Graph
-	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            Papa.parse(csvData, {
-                header: true,
-                dynamicTyping: true,
-                complete: function(parsedData) {
-                    chartConfigs[0].labels  = parsedData.data.map(row => new Date(row['Date']));
-		    initialLabels0 = chartConfigs[0].labels;
-
-		    countries.forEach(country => {
-			    regionData0[country].data = parsedData.data.map(row => row[`${country}_GDP`] / chartConfigs[0].scale);
-		    });
-
-		    const datasets0 = convertToDatasets(chartConfigs[0].data); //convert regionData to a datasets array
-    		    initializeChart(chartConfigs[0].canvasId, datasets0, chartConfigs[0].labels, chartConfigs[0].title, chartConfigs[0].yAxisLabel);
-		    
-		    console.log('Parsed Dates:', chartConfigs[0].labels);
-		}
-	    });
-	});
- 
-// Fetch Data for GDP Per Capita Graph
-	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            Papa.parse(csvData, {
-                header: true,
-                dynamicTyping: true,
-                complete: function(parsedData) {
-                    chartConfigs[1].labels  = parsedData.data.map(row => new Date(row['Date']));
-		    initialLabels1 = chartConfigs[1].labels;
-
-		    countries.forEach(country => {
-			    regionData1[country].data = parsedData.data.map(row => row[`${country}_GDPP`] / chartConfigs[1].scale);
-		    });
-
-		    const datasets1 = convertToDatasets(chartConfigs[1].data); //convert regionData to a datasets array
-    		    initializeChart(chartConfigs[1].canvasId, datasets1, chartConfigs[1].labels, chartConfigs[1].title, chartConfigs[1].yAxisLabel);
-		    
-		    console.log('Parsed Dates:', initialLabels);
-		}
-	    });
-	});
-*/
 	    
 	function convertToDatasets(rd) {
 		return Object.keys(rd).map(region => ({
