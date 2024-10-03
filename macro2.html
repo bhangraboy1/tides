@@ -181,6 +181,27 @@
 	}
 
     </script>
+	
+    <script>
+	function fetchAndProcessData(url, regionData, chartConfig, scale) {
+	fetch(url)
+        	.then(response => response.text())
+        	.then(csvData => {
+            	Papa.parse(csvData, {
+               		header: true,
+                	dynamicTyping: true,
+                	complete: function(parsedData) {
+                    		chartConfig.labels = parsedData.data.map(row => new Date(row['Date']));
+                    		countries.forEach(country => {
+                        		regionData[country].data = parsedData.data.map(row => row[`${country}_GDP`] / scale);
+                    		});
+                    		const datasets = convertToDatasets(regionData);
+                    		initializeChart(chartConfig.canvasId, datasets, chartConfig.labels, chartConfig.title, chartConfig.yAxisLabel);
+                	}
+            	});
+        	});
+	}
+    </script>
 
     <script>
 	let trillion = 1000000000000
@@ -193,6 +214,12 @@
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
 
+// Call for GDP Graph
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', regionData0, chartConfigs[0], chartConfigs[0].scale);
+
+// Call for GDP Per Capita Graph
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
+/*
 // Fetching Data for GDP Graph
 	fetch('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv')
         .then(response => response.text())
@@ -238,6 +265,7 @@
 		}
 	    });
 	});
+*/
 	    
 	function convertToDatasets(rd) {
 		return Object.keys(rd).map(region => ({
