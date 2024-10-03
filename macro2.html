@@ -42,7 +42,7 @@
     <label><input type="checkbox" name="region" value="BRICS">BRICS</label>
     <label><input type="checkbox" name="region" value="TOP6">Top 6</label>
     <label><input type="checkbox" name="region" value="SIM">Similar Income</label>
-    <label><input type="checkbox" name="region" value="BRK">Breakout</label>
+    <label><input type="checkbox" name="region" value="TIG">Asian Tigers</label>
     <button onclick="updateChart()">Update Chart</button>	  
   </div>
 </div>
@@ -194,7 +194,7 @@
 	let initialLabels0 = [];
 	let initialLabels1 = [];
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
-	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD'];
+	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', SGD'];
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
 
@@ -304,9 +304,10 @@
 			selectedRegions.push('BGD');
 			selectedRegions.splice(selectedRegions.indexOf('SIM'), 1);
 		}
-		if (selectedRegions.includes('BRK')) {
+		if (selectedRegions.includes('TIG')) {
 			selectedRegions.push('KOR');
-			selectedRegions.splice(selectedRegions.indexOf('BRK'), 1);
+			selectedRegions.push('SGD');
+			selectedRegions.splice(selectedRegions.indexOf('TIG'), 1);
 		}
 		// Filter by Start Date
 		const minDate = new Date(document.getElementById('minDate').value);
