@@ -99,7 +99,9 @@
 //
 //
 //
-    <script>
+
+// Function:  Initialize Chart
+    <script name="initializeChart">
 	let charts = {}; // Store Charts Globally
 	    
 	function initializeChart(canvasId, data, labels, title, yAxisLabel) {
@@ -152,8 +154,8 @@
 	}
     </script>
 	
-// Scalable Function to Assign Colors to each Country
-    <script>
+// Function:  Scalable Function to Assign Colors to each Country
+    <script name="createRegionData">
 	function createRegionData(countries) {
 		let dataTemplate = {
       		IND: { color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
