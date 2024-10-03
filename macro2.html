@@ -183,6 +183,7 @@
 	}
 
     </script>
+	
 // Function:  fetchAndProcessData	
     <script name="fetchAndProcessData">
 	function fetchAndProcessData(url, regionData, chartConfig, scale) {
@@ -204,8 +205,23 @@
         	});
 	}
     </script>
-
-    <script>
+	
+// Function:  convertToDatasets	
+    <script name="convertToDatasets">
+		function convertToDatasets(rd) {
+		return Object.keys(rd).map(region => ({
+        		label: region,
+        		data: rd[region].data,
+        		borderColor: rd[region].color,
+			backgroundColor: rd[region].color,
+        		borderWidth: rd[region].borderwidth,
+       			pointRadius: rd[region].pointradius,
+        		fill: false
+    		}));
+	}
+    </script>
+    
+   <script>
 	let trillion = 1000000000000
         let initialLabels = [];
 	let initialLabels0 = [];
@@ -244,17 +260,7 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
 // Call for GDP Per Capita Graph
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
 	    
-	function convertToDatasets(rd) {
-		return Object.keys(rd).map(region => ({
-        		label: region,
-        		data: rd[region].data,
-        		borderColor: rd[region].color,
-			backgroundColor: rd[region].color,
-        		borderWidth: rd[region].borderwidth,
-       			pointRadius: rd[region].pointradius,
-        		fill: false
-    		}));
-	}
+
 	    
 
     </script>
