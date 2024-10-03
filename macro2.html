@@ -178,8 +178,8 @@
 		ZAF: { color: 'rgba(  0, 122,  77,  1)', borderwidth: 1, pointradius: 1 },
 		KOR: { color: 'rgba(100,  74,   0,  1)', borderwidth: 1, pointradius: 1 },
 		BGD: { color: 'rgba(  0, 106,  78,  1)', borderwidth: 1, pointradius: 1 },
-		SGD: { color: 'rgba( 25,  25,  25,  1)', borderwidth: 1, pointradius: 1 }
-
+		SGP: { color: 'rgba( 25,  25,  25,  1)', borderwidth: 1, pointradius: 1 },
+		HKG: { color: 'rgba( 25,  25,  25,  1)', borderwidth: 1, pointradius: 1 }
     	};
 		
 	return countries.reduce((acc, country) => {
@@ -196,7 +196,7 @@
 	let initialLabels0 = [];
 	let initialLabels1 = [];
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
-	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGD', 'HKG'];
+	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG'];
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
 
