@@ -193,7 +193,7 @@
                 	complete: function(parsedData) {
                     		chartConfig.labels = parsedData.data.map(row => new Date(row['Date']));
                     		countries.forEach(country => {
-                        		regionData[country].data = parsedData.data.map(row => row[`${country}_GDP`] / scale);
+                        		regionData[country].data = parsedData.data.map(row => row[`${country}_`+chartConfig.tag] / scale);
                     		});
                     		const datasets = convertToDatasets(regionData);
                     		initializeChart(chartConfig.canvasId, datasets, chartConfig.labels, chartConfig.title, chartConfig.yAxisLabel);
@@ -221,7 +221,8 @@
         		labels: initialLabels0, 
        			title: 'Nominal GDP (Current USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)',
-			scale: trillion
+			scale: trillion,
+			tag: 'GDP'
     		},
 		{
         		canvasId: 'chartCanvas1',
@@ -229,7 +230,8 @@
         		labels: initialLabels1, 
        			title: 'GDP (Nominal) Per Capita (USD)', 
         		yAxisLabel: 'USD',
-			scale: 1
+			scale: 1,
+			tag: 'GDPP'
     		}
    	// Add more configurations here as needed
 	];
