@@ -213,7 +213,26 @@
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
-
+// SCALE: This is all of the data that drives all of the charts	    
+    	let chartConfigs = [
+    		{
+        		canvasId: 'chartCanvas0',
+        		data: regionData0, 
+        		labels: initialLabels0, 
+       			title: 'Nominal GDP (Current USD, trillions)', 
+        		yAxisLabel: 'Nominal GDP (USD, trillions)',
+			scale: trillion
+    		},
+		{
+        		canvasId: 'chartCanvas1',
+        		data: regionData1, 
+        		labels: initialLabels1, 
+       			title: 'GDP (Nominal) Per Capita (USD)', 
+        		yAxisLabel: 'USD',
+			scale: 1
+    		}
+   	// Add more configurations here as needed
+	];
 // Call for GDP Graph
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', regionData0, chartConfigs[0], chartConfigs[0].scale);
 
@@ -279,26 +298,7 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
     		}));
 	}
 	    
-// SCALE: This is all of the data that drives all of the charts	    
-    	let chartConfigs = [
-    		{
-        		canvasId: 'chartCanvas0',
-        		data: regionData0, 
-        		labels: initialLabels0, 
-       			title: 'Nominal GDP (Current USD, trillions)', 
-        		yAxisLabel: 'Nominal GDP (USD, trillions)',
-			scale: trillion
-    		},
-		{
-        		canvasId: 'chartCanvas1',
-        		data: regionData1, 
-        		labels: initialLabels1, 
-       			title: 'GDP (Nominal) Per Capita (USD)', 
-        		yAxisLabel: 'USD',
-			scale: 1
-    		}
-   	// Add more configurations here as needed
-	];
+
     </script>
     <script>
 	function createDatasets(regionData, initialLabels, selectedRegions, minDate) {
