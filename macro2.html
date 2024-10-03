@@ -220,51 +220,8 @@
     		}));
 	}
     </script>
-    
-   <script>
-	let trillion = 1000000000000
-        let initialLabels = [];
-	let initialLabels0 = [];
-	let initialLabels1 = [];
-// SCALE: Defining Colors, Border Width, and Marker Size for each dataset
-// These are ISO 4-Letter Country Codes
-	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
-	let regionData0 = createRegionData(countries);
-	let regionData1 = createRegionData(countries); 
-// SCALE: This is all of the data that drives all of the charts	    
-    	let chartConfigs = [
-    		{
-        		canvasId: 'chartCanvas0',
-        		data: regionData0, 
-        		labels: initialLabels0, 
-       			title: 'Nominal GDP (Current USD, trillions)', 
-        		yAxisLabel: 'Nominal GDP (USD, trillions)',
-			scale: trillion,
-			tag: 'GDP'
-    		},
-		{
-        		canvasId: 'chartCanvas1',
-        		data: regionData1, 
-        		labels: initialLabels1, 
-       			title: 'GDP (Nominal) Per Capita (USD)', 
-        		yAxisLabel: 'USD',
-			scale: 1,
-			tag: 'GDPP'
-    		}
-   	// Add more configurations here as needed
-	];
-	    
-// Call for GDP Graph
-fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', regionData0, chartConfigs[0], chartConfigs[0].scale);
-
-// Call for GDP Per Capita Graph
-fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
-	    
-
-	    
-
-    </script>
-    <script>
+ // Function:  createDatasets	
+    <script name="createDatasets">
 	function createDatasets(regionData, initialLabels, selectedRegions, minDate) {
     		return [...new Set(selectedRegions)].map(region => ({
         		label: region,
@@ -275,7 +232,10 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
         		pointRadius: regionData[region].pointradius
     		}));
 	}
-
+    </script>
+	
+// Function:  updateChart	
+    <script>
         function updateChart() {
 		// Get Selected Regions
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
@@ -309,6 +269,46 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
 		});
 	} 
     </script> 
+	
+   <script>
+	let trillion = 1000000000000
+        let initialLabels = [];
+	let initialLabels0 = [];
+	let initialLabels1 = [];
+// SCALE: Defining Colors, Border Width, and Marker Size for each dataset
+// These are ISO 4-Letter Country Codes
+	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
+	let regionData0 = createRegionData(countries);
+	let regionData1 = createRegionData(countries); 
+// SCALE: This is all of the data that drives all of the charts	    
+    	let chartConfigs = [
+    		{
+        		canvasId: 'chartCanvas0',
+        		data: regionData0, 
+        		labels: initialLabels0, 
+       			title: 'Nominal GDP (Current USD, trillions)', 
+        		yAxisLabel: 'Nominal GDP (USD, trillions)',
+			scale: trillion,
+			tag: 'GDP'
+    		},
+		{
+        		canvasId: 'chartCanvas1',
+        		data: regionData1, 
+        		labels: initialLabels1, 
+       			title: 'GDP (Nominal) Per Capita (USD)', 
+        		yAxisLabel: 'USD',
+			scale: 1,
+			tag: 'GDPP'
+    		}
+   	// Add more configurations here as needed
+	];
+    
+// Call for GDP Graph
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDP.csv', regionData0, chartConfigs[0], chartConfigs[0].scale);
 
+// Call for GDP Per Capita Graph
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
+    </script>
+	
 </body>
 </html>
