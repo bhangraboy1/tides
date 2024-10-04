@@ -26,6 +26,7 @@ body {
     }
     .chart-box {
 	width: 45%;
+	position: relative;
     }
     div.intro {
 	margin-left: 100px;
