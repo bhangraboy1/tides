@@ -287,7 +287,7 @@
 	let initialLabels1 = [];
 	let initialLabels2 = [];
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
-// These are ISO 4-Letter Country Codes
+// These are ISO 3-Letter Country Codes
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
@@ -332,7 +332,7 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
 
 // Call for GINI
-fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GINI.csv', regionData2, chartConfigs[2], chartConfigs[2].scale);
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData2, chartConfigs[2], chartConfigs[2].scale);
 
    </script>
 	
