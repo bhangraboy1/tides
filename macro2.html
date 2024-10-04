@@ -285,11 +285,14 @@
         let initialLabels = [];
 	let initialLabels0 = [];
 	let initialLabels1 = [];
+	let initialLabels2 = [];
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
 // These are ISO 4-Letter Country Codes
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
 	let regionData0 = createRegionData(countries);
 	let regionData1 = createRegionData(countries); 
+	let regionData2 = createRegionData(countries); 
+
 // SCALE: This is all of the data that drives all of the charts	    
     	let chartConfigs = [
     		{
@@ -309,6 +312,15 @@
         		yAxisLabel: 'USD',
 			scale: 1,
 			tag: 'GDPP'
+    		},
+		{
+        		canvasId: 'chartCanvas2',
+        		data: regionData2, 
+        		labels: initialLabels2, 
+       			title: 'GINI Coeficient', 
+        		yAxisLabel: '%',
+			scale: 1,
+			tag: 'GINI'
     		}
    	// Add more configurations here as needed
 	];
@@ -318,7 +330,11 @@ fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GD
 
 // Call for GDP Per Capita Graph
 fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GDPP.csv', regionData1, chartConfigs[1], chartConfigs[1].scale);
-    </script>
+
+// Call for GINI
+fetchAndProcessData('https://raw.githubusercontent.com/bhangraboy1/tides/main/GINI.csv', regionData2, chartConfigs[2], chartConfigs[2].scale);
+
+   </script>
 	
 </body>
 </html>
