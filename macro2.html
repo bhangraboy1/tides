@@ -119,6 +119,10 @@
 			id: 'cutomLegend',
 			afterDraw: (chart, args, options) => {
 				const {_metaset, ctx} = charts;
+				ctx.save();
+				_metasets.forEach((meta) => {
+					console.log(meta)
+				})
 				console.log(_metasets);
 			}
 		}
