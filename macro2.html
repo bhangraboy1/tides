@@ -131,7 +131,10 @@
 					ctx.fillStyle = lineColor;
 					ctx.fillText(dataset.label, paddingX, paddingY);
 					paddingY += 25;
-					console.log(dataset.label);
+//					console.log(dataset.label);
+					console.log("Chart Area:", chart.chartArea);
+					console.log("Datasets:", data.datasets);
+
 				});
 				ctx.restore();
 			}
