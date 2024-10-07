@@ -118,7 +118,7 @@
 		}
 		const customLegend = {
 			id: 'customLegend',
-			afterDraw: (chart) => {
+			afterDatasetsDraw: (chart) => {
 				const {ctx, data} = chart;
 				ctx.save();
 				const paddingX = chart.chartArea.right - 5
