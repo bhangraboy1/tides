@@ -121,8 +121,8 @@
 			afterDraw: (chart) => {
 				const {ctx, data} = chart;
 				ctx.save();
-				const paddingX = chart.chartArea.right + 30
-				let paddingY = chart.chartArea.top + 20;
+				const paddingX = chart.chartArea.right - 30
+				let paddingY = chart.chartArea.top - 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
 					const lineColor = dataset.borderColor || 'black';
