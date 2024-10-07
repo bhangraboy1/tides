@@ -121,7 +121,7 @@
 			afterDraw: (chart) => {
 				const {ctx, data} = chart;
 				ctx.save();
-				const paddingX = chart.chartArea.right+20
+				const paddingX = chart.chartArea.right + 30
 				let paddingY = chart.chartArea.top + 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
@@ -129,7 +129,7 @@
 					
 					ctx.font = 'bolder 12px Arial';
 					ctx.fillStyle = lineColor;
-					ctx.fillText(dataset.label, paddingX + 20, paddingY + 20);
+					ctx.fillText(dataset.label, paddingX, paddingY);
 					paddingY += 25;
 				});
 				ctx.restore();
@@ -144,7 +144,7 @@
         		options: {
             			plugins: {
 					layout: {
-						padding: 50
+						padding: 100
 					},
                				title: {
                 				display: true,
