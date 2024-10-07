@@ -118,7 +118,7 @@
 		const customLegend = {
 			id: 'customLegend',
 			afterDraw: (chart, args, options) => {
-				const {_metaset, ctx} = charts;
+				const {_metaset, ctx} = chart;
 				ctx.save();
 				_metasets.forEach((meta) => {
 					console.log(meta._dataset.label)
