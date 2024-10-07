@@ -122,7 +122,6 @@
 				const {data, ctx} = chart;
 				ctx.save();
 				data.datasets.forEach((dataset, index) => {
-					console.log(meta._dataset.label)
 					ctx.font = 'bolder 12px Arial';
 					ctx.fillStyle = 'black';
 					ctx.fillText(dataset.label, 100, 100)
