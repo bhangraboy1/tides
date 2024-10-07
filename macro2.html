@@ -115,6 +115,13 @@
 		if (charts[canvasId]) {
 			charts[canvasId].destroy();
 		}
+		const customLegend = {
+			id: 'cutomLegend',
+			afterDraw(chart, args, options) => {
+				const {_metaset, ctx} = charts;
+				console.log(_metasets);
+			}
+		}
    		charts[canvasId] = new Chart(ctx, {
 		  	type: 'line',
        			data: {
@@ -140,7 +147,8 @@
 								size: 10
 							}
          					}
-       					}
+       					},
+					plugins; [customLegend]
             			},
             			scales: {
                 			x: {
