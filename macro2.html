@@ -131,9 +131,10 @@
 					ctx.font = 'bolder 10px Arial';
 					ctx.fillStyle = lineColor;
 					ctx.fillText(dataset.label, paddingX, paddingY);
-					console.log("Chart Area:", paddingY);
+					console.log("Index", index);
+					console.log("Padding Y:", paddingY);
 					console.log("Chart Area:", chart.chartArea);
-					console.log("Datasets:", data.datasets);
+					console.log("Datasets:", dataset);
 				});
 				ctx.restore();
 			}
