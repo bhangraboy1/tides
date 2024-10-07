@@ -121,7 +121,10 @@
 				const {_metaset, ctx} = charts;
 				ctx.save();
 				_metasets.forEach((meta) => {
-					console.log(meta._dataset)
+					console.log(meta._dataset.label)
+					ctx.font = 'bolder 12px Aril';
+					ctx.fillStyle = 'black';
+					ctx.fillText(meta._dataset.label, 200, 200)
 				})
 				console.log(_metasets);
 			}
