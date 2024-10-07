@@ -121,17 +121,17 @@
 			afterDraw: (chart) => {
 				const {ctx, data} = chart;
 				ctx.save();
-				const paddingX = chart.chartArea.right - 15
+				const paddingX = chart.chartArea.right - 5
 				let paddingY = chart.chartArea.top - 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
+					paddingY = meta.data[meta.data.length - 1].y
+
 					const lineColor = dataset.borderColor || 'black';
-					paddingY = meta.data[meta.data.length-1].y
 					ctx.font = 'bolder 10px Arial';
 					ctx.fillStyle = lineColor;
 					ctx.fillText(dataset.label, paddingX, paddingY);
-					paddingY += 25;
-//					console.log(dataset.label);
+					console.log("Chart Area:", paddingY);
 					console.log("Chart Area:", chart.chartArea);
 					console.log("Datasets:", data.datasets);
 				});
