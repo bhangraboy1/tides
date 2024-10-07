@@ -119,12 +119,17 @@
 		const customLegend = {
 			id: 'customLegend',
 			afterDraw: (chart) => {
-				const {data, ctx} = chart;
+				const {ctx, data} = chart;
 				ctx.save();
+				const paddingX = chart.chartArea.right+20
+				let paddingY = chart.chartArea.top+ + 20;
 				data.datasets.forEach((dataset, index) => {
+					const meta = chart.getDatasetMta(index);
+					const lineColor - dataset.borderColor || 'black';
+					
 					ctx.font = 'bolder 12px Arial';
-					ctx.fillStyle = 'black';
-					ctx.fillText(dataset.label, 100, 100)
+					ctx.fillStyle = lineColor;
+					ctx.fillText(dataset.label, paddingX + 20, paddingY + 20)
 				});
 				ctx.restore();
 			}
