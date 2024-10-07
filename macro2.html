@@ -49,7 +49,7 @@
 	<H2>Gross Domestic Product</H2>
 	<P2>GDP is a measure of the monetary value of final goods and services that are produced within a country.</P2>
         <canvas id="chartCanvas0" style:"position: relative; z-index: 1" width="600" height="600"></canvas>
-        <img src="https://raw.githubusercontent.com/bhangraboy1/tides/refs/heads/main/TIDES.png" style="position: absolute; top: 220; left: 70; width: 50px; height: 50px; opacity: 1.0; z-index: 10;">
+        <img src="https://raw.githubusercontent.com/bhangraboy1/tides/refs/heads/main/TIDES.png" style="position: absolute; top: 150; left: 70; width: 50px; height: 50px; opacity: 1.0; z-index: 10;">
 	<H5>Source: World Bank Data accessed through WBGAPI. Code: NY.GDP.MKTP.CD</H5>
       </div>
 	    
@@ -57,7 +57,7 @@
         <H2>GDP (Nominal) Per Capita in USD</H2>
 	<P2>GDP per capita is a measure of individual income or the standard of living within a country.</P2>
         <canvas id="chartCanvas1" style:"position: relative; z-index: 1" width="600" height="600"></canvas>
-        <img src="https://raw.githubusercontent.com/bhangraboy1/tides/refs/heads/main/TIDES.png" style="position: absolute; top: 220; left: 100; width: 50px; height: 50px; opacity: 1.0; z-index: 10;">
+        <img src="https://raw.githubusercontent.com/bhangraboy1/tides/refs/heads/main/TIDES.png" style="position: absolute; top: 175; left: 100; width: 50px; height: 50px; opacity: 1.0; z-index: 10;">
 	<H5>Source: World Bank Data accessed through WBGAPI. Code: NY.GDP.PCAP.CD</H5>
       </div>
     </div>
@@ -121,11 +121,11 @@
 			afterDatasetsDraw: (chart) => {
 				const {ctx, data} = chart;
 				ctx.save();
-				const paddingX = chart.chartArea.right - 10
+				const paddingX = chart.chartArea.right - 7
 				let paddingY = chart.chartArea.top - 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
-					paddingY = meta.data[meta.data.length - 3].y -5
+					paddingY = meta.data[meta.data.length - 2].y -5
 
 					const lineColor = dataset.borderColor || 'black';
 					ctx.font = 'bolder 8px Arial';
