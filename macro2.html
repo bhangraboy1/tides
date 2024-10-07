@@ -122,14 +122,15 @@
 				const {ctx, data} = chart;
 				ctx.save();
 				const paddingX = chart.chartArea.right+20
-				let paddingY = chart.chartArea.top+ + 20;
+				let paddingY = chart.chartArea.top + 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
 					const lineColor = dataset.borderColor || 'black';
 					
 					ctx.font = 'bolder 12px Arial';
 					ctx.fillStyle = lineColor;
-					ctx.fillText(dataset.label, paddingX + 20, paddingY + 20)
+					ctx.fillText(dataset.label, paddingX + 20, paddingY + 20);
+					paddingY += 25;
 				});
 				ctx.restore();
 			}
