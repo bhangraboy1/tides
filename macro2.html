@@ -125,8 +125,10 @@
 				let paddingY = chart.chartArea.top - 20;
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
-					paddingY = meta.data[meta.data.length - 2].y -5
-
+					paddingY = meta.data[meta.data.length - 2].y - 5
+					if (meta.data[meta.data.length - 2].y == 0) {
+						paddingY = meta.data[meta.data.length - 3].y - 5
+					}
 					const lineColor = dataset.borderColor || 'black';
 					ctx.font = 'bolder 8px Arial';
 					ctx.fillStyle = lineColor;
