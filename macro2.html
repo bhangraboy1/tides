@@ -126,7 +126,7 @@
 				data.datasets.forEach((dataset, index) => {
 					const meta = chart.getDatasetMeta(index);
 					paddingY = meta.data[meta.data.length - 2].y - 5
-					for (let lag = 5; 2; lag--) {
+					for (let lag = 5; lag > 2; lag--) {
 						if (meta.data[meta.data.length - lag].y != 0) {
 							paddingY = meta.data[meta.data.length - lag].y - 5
 						}
