@@ -186,8 +186,8 @@
 	}
     </script>
 	
-// Function:  Scalable Function to Assign Colors to each Country
     <script name="createRegionData">
+//      Function:  Scalable Function to Assign Colors to each Country
 	function createRegionData(countries) {
 		let dataTemplate = {
       		IND: { color: 'rgba(255, 103,  31,  1)', borderwidth: 3, pointradius: 3 },
@@ -216,8 +216,8 @@
 
     </script>
 	
-// Function:  fetchAndProcessData	
     <script name="fetchAndProcessData">
+//      Function:  fetchAndProcessData	
 	function fetchAndProcessData(url, regionData, chartConfig, scale) {
 	fetch(url)
         	.then(response => response.text())
@@ -238,9 +238,9 @@
 	}
     </script>
 	
-// Function:  convertToDatasets	
     <script name="convertToDatasets">
-		function convertToDatasets(rd) {
+//      Function:  convertToDatasets	
+	function convertToDatasets(rd) {
 		return Object.keys(rd).map(region => ({
         		label: region,
         		data: rd[region].data,
@@ -252,8 +252,8 @@
     		}));
 	}
     </script>
- // Function:  createDatasets	
     <script name="createDatasets">
+ //     Function:  createDatasets	
 	function createDatasets(regionData, initialLabels, selectedRegions, minDate) {
     		return [...new Set(selectedRegions)].map(region => ({
         		label: region,
@@ -266,8 +266,8 @@
 	}
     </script>
 	
-// Function:  updateChart	
     <script name="updateChart">
+//      Function:  updateChart	
         function updateChart() {
 		// Get Selected Regions
 		const selectedRegions = Array.from(document.querySelectorAll('input[name="region"]:checked')).map(checkbox => checkbox.value);
