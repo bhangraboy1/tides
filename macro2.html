@@ -312,16 +312,23 @@
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
 // These are ISO 3-Letter Country Codes
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
-	let regionData0 = createRegionData(countries);
-	let regionData1 = createRegionData(countries); 
-	let regionData2 = createRegionData(countries); 
-	let regionData3 = createRegionData(countries); 
+
+	const regionData = [];
+	const numberOfCharts = 4;
+	for (let i = 0; i < numberOfCharts; i++) {
+		regionData[i] = createRegionData(countries);
+	}
+	
+//	let regionData0 = createRegionData(countries);
+//	let regionData1 = createRegionData(countries); 
+//	let regionData2 = createRegionData(countries); 
+//	let regionData3 = createRegionData(countries); 
 
 // SCALE: This is all of the data that drives all of the charts	    
     	let chartConfigs = [
     		{
         		canvasId: 'chartCanvas0',
-        		data: regionData0, 
+        		data: regionData[0], 
         		labels: initialLabels0, 
        			title: 'Nominal GDP (Current USD, trillions)', 
         		yAxisLabel: 'Nominal GDP (USD, trillions)',
@@ -330,7 +337,7 @@
     		},
 		{
         		canvasId: 'chartCanvas1',
-        		data: regionData1, 
+        		data: regionData[1], 
         		labels: initialLabels1, 
        			title: 'GDP (Nominal) Per Capita (USD)', 
         		yAxisLabel: 'USD',
@@ -339,7 +346,7 @@
     		},
 		{
         		canvasId: 'chartCanvas2',
-        		data: regionData2, 
+        		data: regionData[2], 
         		labels: initialLabels2, 
        			title: 'GINI Coeficient', 
         		yAxisLabel: '%',
@@ -348,7 +355,7 @@
     		},
 		{
         		canvasId: 'chartCanvas3',
-        		data: regionData3, 
+        		data: regionData[3], 
         		labels: initialLabels3, 
        			title: 'Debt as % of GDP', 
         		yAxisLabel: '%',
