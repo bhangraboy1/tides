@@ -303,17 +303,13 @@
     </script> 
 	
    <script name="MainCode">
-	let trillion = 1000000000000
-        let initialLabels = [];
-//	let initialLabels0 = [];
-//	let initialLabels1 = [];
-//	let initialLabels2 = [];
-//	let initialLabels3 = [];
 // SCALE: Defining Colors, Border Width, and Marker Size for each dataset
 // These are ISO 3-Letter Country Codes
 	let countries = ['IND', 'CHN', 'BRA', 'USA', 'GBR', 'JPN', 'DEU', 'RUS', 'ZAF', 'KOR', 'BGD', 'SGP', 'HKG', 'VNM', 'IDN'];
+	let trillion = 1000000000000
 
 	const regionData = [];
+        let initialLabels = [];
 	const numberOfCharts = 4;
 	for (let i = 0; i < numberOfCharts; i++) {
 		regionData[i] = createRegionData(countries);
